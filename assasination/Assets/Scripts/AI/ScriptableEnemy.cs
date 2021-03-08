@@ -16,5 +16,9 @@ public class ScriptableEnemy : ScriptableObject
 
     [Header("Damage")]
     public float m_Damage = 1;
+
+    [Header("Health")]
+    public float Health = 100; 
+    
     
 }
