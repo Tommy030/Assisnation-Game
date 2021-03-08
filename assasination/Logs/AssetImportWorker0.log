@@ -88,3 +88,113 @@ Received Import Request.
 Start importing Assets/Scenes/SampleScene.unity using Guid(9fc0d4010bbf28b4594072e72b8655ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a0ba9fd0a808516969c642a6079d4ee5') in 0.007886 seconds
   Import took 0.009526 seconds .
 
+========================================================================
+Received Import Request.
+  Time since last request: 20.642633 seconds.
+  path: Assets/Scenes/SampleScene.unity
+  artifactKey: Guid(9fc0d4010bbf28b4594072e72b8655ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/SampleScene.unity using Guid(9fc0d4010bbf28b4594072e72b8655ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd534cc35f56552291fc359e1f567a39d') in 0.001693 seconds
+  Import took 0.003514 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 104.909593 seconds.
+  path: Assets/Scenes/SampleScene
+  artifactKey: Guid(d51e2c24cf8435f44bc4d29c94cd33df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/SampleScene using Guid(d51e2c24cf8435f44bc4d29c94cd33df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '04098c0c2d9daf383d3c2509f0977025') in 0.001577 seconds
+  Import took 0.003474 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.088858 seconds.
+  path: Assets/Scenes/SampleScene/NavMesh.asset
+  artifactKey: Guid(a1e1aeb2d9a9c7a45bcd3c8f2294fc13) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/SampleScene/NavMesh.asset using Guid(a1e1aeb2d9a9c7a45bcd3c8f2294fc13) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b60971d573f77d58ee9b3c200460a604') in 0.032278 seconds
+  Import took 0.034242 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1793.303082 seconds.
+  path: Assets/Scripts/AI
+  artifactKey: Guid(1cd6d62eee47b9c47827dc9ddeaeaf1f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/AI using Guid(1cd6d62eee47b9c47827dc9ddeaeaf1f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3cf214b585655fadcc1ac4b345378536') in 0.001624 seconds
+  Import took 0.003725 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.541392 seconds.
+  path: Assets/Scripts/AI/EnemyMovement.cs
+  artifactKey: Guid(2bd0ce4757f6aaf42a4ad5e82001cc11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/AI/EnemyMovement.cs using Guid(2bd0ce4757f6aaf42a4ad5e82001cc11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e980048a1f8191b5cc5089d985455c80') in 0.005243 seconds
+  Import took 0.006902 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.032015 seconds.
+  path: Assets/Scripts/AI/EnemyMovement.cs
+  artifactKey: Guid(2bd0ce4757f6aaf42a4ad5e82001cc11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/AI/EnemyMovement.cs using Guid(2bd0ce4757f6aaf42a4ad5e82001cc11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e980048a1f8191b5cc5089d985455c80') in 0.001483 seconds
+  Import took 0.003146 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.000616 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.19 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.771 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.18 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1098 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 56.9 MB.
+System memory in use after: 57.0 MB.
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1546.
+Total: 1.563400 ms (FindLiveObjects: 0.134200 ms CreateObjectMapping: 0.038100 ms MarkObjects: 1.335600 ms  DeleteObjects: 0.054100 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 287.926904 seconds.
+  path: Assets/Scripts/AI/EnemyMovement.cs
+  artifactKey: Guid(2bd0ce4757f6aaf42a4ad5e82001cc11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/AI/EnemyMovement.cs using Guid(2bd0ce4757f6aaf42a4ad5e82001cc11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6f2dfbc6558f5d3d63ae06eb500bec39') in 0.003430 seconds
+  Import took 0.005042 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.000984 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.19 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.921 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.18 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1098 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 56.9 MB.
+System memory in use after: 57.0 MB.
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1548.
+Total: 1.611200 ms (FindLiveObjects: 0.123900 ms CreateObjectMapping: 0.034200 ms MarkObjects: 1.403500 ms  DeleteObjects: 0.048800 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 60.212282 seconds.
+  path: Assets/Scripts/AI/EnemyMovement.cs
+  artifactKey: Guid(2bd0ce4757f6aaf42a4ad5e82001cc11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/AI/EnemyMovement.cs using Guid(2bd0ce4757f6aaf42a4ad5e82001cc11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8f9ed82abe1aecc8ff484b08a859d8b5') in 0.003821 seconds
+  Import took 0.005765 seconds .
+
