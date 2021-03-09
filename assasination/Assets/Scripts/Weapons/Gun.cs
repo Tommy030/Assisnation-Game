@@ -49,11 +49,12 @@ public class Gun : MonoBehaviour
             //hier in zet je wat het moet doen
             EnemyMovement target = hit.transform.GetComponent<EnemyMovement>();
             if(target != null)
-            { 
+            {
+                Debug.Log("Shoot");
                 target.RemoveHP(m_weaponData.m_damage);
             }
 
         }
-        Debug.Log("Shoot");
+
     }
 }

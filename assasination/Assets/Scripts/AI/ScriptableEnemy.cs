@@ -20,5 +20,10 @@ public class ScriptableEnemy : ScriptableObject
     [Header("Health")]
     public float Health = 100; 
     
-    
+    [Header("Vision")]
+    public LayerMask Player;
+    public LayerMask WallWithPlayer;
+    [SerializeField] public float Angle = 10f;
+    [SerializeField] public float Radius;
+
 }

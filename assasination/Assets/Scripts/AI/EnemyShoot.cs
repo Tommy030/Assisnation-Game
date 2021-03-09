@@ -44,7 +44,7 @@ public class EnemyShoot : MonoBehaviour
 
                 if (Hitchance == 1 && Attackable == true)
                 {
-                    // vul hier de damage functie van de player in
+                    m_Player.GetComponent<PlayerMovement>().TakeDamage();
                 }
             }
         }

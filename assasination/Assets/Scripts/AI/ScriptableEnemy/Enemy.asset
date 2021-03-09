@@ -18,3 +18,12 @@ MonoBehaviour:
   m_WanderRange: 10
   m_DurationWaitingAtWanderingLocation: 4
   m_Damage: 1
+  Health: 100
+  Player:
+    serializedVersion: 2
+    m_Bits: 256
+  WallWithPlayer:
+    serializedVersion: 2
+    m_Bits: 448
+  Angle: 90
+  Radius: 25

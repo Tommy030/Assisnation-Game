@@ -11,14 +11,12 @@ public class EnemyMovement : MonoBehaviour
     private NavMeshAgent m_navmeshagent;
     [SerializeField] public ScriptableEnemy m_Enemy;
     private ScriptableEnemy m_PublicEnemy { set; get; }
-    private bool m_Alert;
+    public bool m_Alert;
 
     private bool m_Wandering;
     private bool m_newwait;
     private Vector3 m_WanderLocation;
-    private LayerMask Layer;
-    [SerializeField] public float Angle = 10f;
-    [SerializeField] public float Radius;
+
     [SerializeField] public bool m_SpottedTarget = false;
     private void Awake()
     {
@@ -34,7 +32,6 @@ public class EnemyMovement : MonoBehaviour
     {
         if (!m_SpottedTarget)
         {
-
             if (m_navmeshagent.CalculatePath(targetpos, m_navmeshpath))
             {
                 m_navmeshagent.SetPath(m_navmeshpath);
@@ -55,10 +52,6 @@ public class EnemyMovement : MonoBehaviour
                 }
             }
         }
-        // else if (Vector3.Distance(Player.transform, transform.position)<= Radius)
-        // {
-        //   bool InFOXLOC = InFOV(transform, Player, Angle, Radius);
-        // }
         else
         {
             if (!m_newwait)
@@ -66,10 +59,12 @@ public class EnemyMovement : MonoBehaviour
                 Wander();
             }
         }
+         m_SpottedTarget= InFOV(transform, Playermanager.instance.gameObject.transform, m_PublicEnemy.Angle, m_PublicEnemy.Radius);
     }
 
     private void Wander()
     {
+
         if (!m_Wandering)
         {
             bool Haspath = false;
@@ -77,7 +72,7 @@ public class EnemyMovement : MonoBehaviour
             {
                 Haspath = RandomWanderTarget(transform.position, m_PublicEnemy.m_WanderRange, out m_WanderLocation);
             }
-            if (Haspath && !m_Alert &!m_SpottedTarget)
+            if (Haspath && !m_Alert & !m_SpottedTarget)
             {
                 m_navmeshagent.SetDestination(m_WanderLocation);
                 m_Wandering = true;
@@ -113,50 +108,66 @@ public class EnemyMovement : MonoBehaviour
 
     public bool InFOV(Transform Check, Transform Target, float MaxAngle, float Radius)
     {
-        Collider[] Overlaps = new Collider[300];
-        int count = Physics.OverlapSphereNonAlloc(Check.position, Radius, Overlaps, Layer);
-        for (int i = 0; i < count + 1; i++)
+        Collider[] Overlaps;
+        Overlaps = Physics.OverlapSphere(transform.position, Radius, m_PublicEnemy.Player);
+        for (int i = 0; i < Overlaps.Length; i++)
         {
-            if (Overlaps[i] != null)
+            if (Overlaps.Length > 0)
             {
-                if (Overlaps[i].transform == Target)
-                {
-                    Vector3 directionbetween = (Target.position - Check.position).normalized;
+                    Vector3 directionbetween = (Overlaps[i].transform.position - Check.position);
                     directionbetween.y = 0;
-                    float angle = Vector3.Angle(Check.forward, directionbetween);
-                    if (angle <= MaxAngle)
+
+                    float angle = Vector3.Angle(directionbetween,transform.forward);
+
+
+                var line = transform.position + (transform.forward * Radius);
+                var rotatedline = Quaternion.AngleAxis(angle, transform.up) * line;
+                Debug.DrawLine(transform.position, rotatedline,Color.red);
+                     
+                    if (angle <= MaxAngle )
                     {
-                        Ray ray = new Ray(Check.position, Target.position - Check.position);
+                        Ray ray = new Ray(Check.position, Overlaps[i].transform.position - Check.position);
                         RaycastHit hit;
-                        if (Physics.Raycast(ray, out hit, Radius, Layer))
+                        if (Physics.Raycast(ray, out hit, Radius, m_PublicEnemy.WallWithPlayer))
                         {
 
-                            if (hit.transform == Target)
+                            if (hit.collider.gameObject.tag == "Player")
                             {
-
                                 return true;
                             }
+
                         }
                     }
-                    else
-                        return false;
-                }
             }
         }
         return false;
     }
     private void OnDrawGizmos()
     {
-        Vector3 FovLine1 = Quaternion.AngleAxis(Angle, transform.up) * transform.forward * Radius;
-        Vector3 FovLine2 = Quaternion.AngleAxis(-Angle, transform.up) * transform.forward * Radius;
-        Gizmos.color = Color.blue;
-        Gizmos.DrawRay(transform.position, FovLine1);
-        Gizmos.DrawRay(transform.position, FovLine2);
-        Gizmos.color = Color.black;
-        Gizmos.DrawRay(transform.position, transform.forward * Radius);
+        if(m_PublicEnemy != null)
+        {
+            Vector3 FovLine1 = Quaternion.AngleAxis(m_PublicEnemy.Angle, transform.up) * transform.forward *  m_PublicEnemy.Radius;
+            Vector3 FovLine2 = Quaternion.AngleAxis(-m_PublicEnemy.Angle, transform.up) * transform.forward * m_PublicEnemy.Radius;
+
+            Gizmos.color = Color.blue;
+            Gizmos.DrawRay(transform.position, FovLine1);
+            Gizmos.DrawRay(transform.position, FovLine2);
+
+
+
+            if (!m_SpottedTarget)
+                Gizmos.color = Color.red;
+            else
+                Gizmos.color = Color.green;
+            Gizmos.DrawRay(transform.position, (Playermanager.instance.m_Player.transform.position - transform.position).normalized * m_PublicEnemy.Radius);
+
+
+            Gizmos.color = Color.black;
+            Gizmos.DrawRay(transform.position, transform.forward * m_PublicEnemy.Radius);
+        }
     }
 
-    public void RemoveHP(int damage)
+        public void RemoveHP(int damage)
     {
         if (m_PublicEnemy.Health - damage > 0)
         {
@@ -166,6 +177,17 @@ public class EnemyMovement : MonoBehaviour
     }
     public void Death()
     {
-
+        gameObject.SetActive(false);
     }
 }
+
+
+
+
+
+
+
+
+
+
+

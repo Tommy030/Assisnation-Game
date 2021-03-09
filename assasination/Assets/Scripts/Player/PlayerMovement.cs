@@ -99,10 +99,12 @@ public class PlayerMovement : MonoBehaviour
     {
         CurrentHeight.y = 0.5f;
         m_SoundRange /= 2;
+        m_Movespeed /= 2;
     } 
     private void StopCrouch()
     {
         CurrentHeight.y = 1f;
         m_SoundRange *= 2;
+        m_Movespeed *= 2;
     }
 }
