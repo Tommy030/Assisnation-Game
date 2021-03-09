@@ -23,6 +23,11 @@ public class PlayerMovement : MonoBehaviour
     [Header("Crouch")]
     [SerializeField] private Vector3 CurrentHeight;
 
+
+    [Header("Wall Climb vars")]
+    [SerializeField] private LayerMask m_ClimbAbleWallmask;
+    [SerializeField] private float CLimbSpeed;
+
     private void Start()
     {
         CurrentHeight = new Vector3(1, 1, 1);
@@ -50,8 +55,15 @@ public class PlayerMovement : MonoBehaviour
             m_Velocity.y = Mathf.Sqrt(m_JumpHeight * -2f * m_Gravity);
             Debug.Log("ping");
         }
-
-        m_Velocity.y += -m_Gravity * Time.deltaTime;
+        RaycastHit hit;
+        if (Physics.Raycast(m_GroundCheck.position, transform.forward, out hit, 1f, m_ClimbAbleWallmask) && !m_IsGrounded && Input.GetKey(KeyCode.W))
+        {
+            m_Velocity.y = CLimbSpeed;
+        }
+        else
+        {
+            m_Velocity.y += -m_Gravity * Time.deltaTime;
+        }
 
         m_Control.Move(m_Velocity * Time.deltaTime);
 
