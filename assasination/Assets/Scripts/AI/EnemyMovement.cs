@@ -73,11 +73,11 @@ public class EnemyMovement : MonoBehaviour
         if (!m_Wandering)
         {
             bool Haspath = false;
-            while (!Haspath && !m_Alert)
+            while (!Haspath && !m_Alert && !m_SpottedTarget)
             {
                 Haspath = RandomWanderTarget(transform.position, m_PublicEnemy.m_WanderRange, out m_WanderLocation);
             }
-            if (Haspath && !m_Alert)
+            if (Haspath && !m_Alert &!m_SpottedTarget)
             {
                 m_navmeshagent.SetDestination(m_WanderLocation);
                 m_Wandering = true;
@@ -88,7 +88,6 @@ public class EnemyMovement : MonoBehaviour
             StartCoroutine(WaitHere(m_Wandering, m_PublicEnemy.m_DurationWaitingAtWanderingLocation));
         }
     }
-
     IEnumerator WaitHere(bool Change, float duration)
     {
         m_newwait = true;
@@ -155,5 +154,18 @@ public class EnemyMovement : MonoBehaviour
         Gizmos.DrawRay(transform.position, FovLine2);
         Gizmos.color = Color.black;
         Gizmos.DrawRay(transform.position, transform.forward * Radius);
+    }
+
+    public void RemoveHP(int damage)
+    {
+        if (m_PublicEnemy.Health - damage > 0)
+        {
+            m_PublicEnemy.Health -= damage;
+        }
+        else Death();
+    }
+    public void Death()
+    {
+
     }
 }
