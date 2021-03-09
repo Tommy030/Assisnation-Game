@@ -28,6 +28,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask m_ClimbAbleWallmask;
     [SerializeField] private float CLimbSpeed;
 
+    [Header("sneak vars")]
+    [SerializeField] private float m_SoundRange;
+    [SerializeField] private Collider[] m_EnemiesInRange;
+    [SerializeField] private LayerMask m_EnemyLayer;
+
     private void Start()
     {
         CurrentHeight = new Vector3(1, 1, 1);
@@ -78,14 +83,26 @@ public class PlayerMovement : MonoBehaviour
         }
 
         transform.localScale = CurrentHeight;
+
+        m_EnemiesInRange = Physics.OverlapSphere(transform.position, m_SoundRange, m_EnemyLayer);
+
+        if (m_EnemiesInRange.Length != 0)
+        {
+            for (int i = 0; i < m_EnemiesInRange.Length; i++)
+            {
+
+            }
+        }
     }
 
     private void StartCrouch()
     {
         CurrentHeight.y = 0.5f;
+        m_SoundRange /= 2;
     } 
     private void StopCrouch()
     {
         CurrentHeight.y = 1f;
+        m_SoundRange *= 2;
     }
 }
