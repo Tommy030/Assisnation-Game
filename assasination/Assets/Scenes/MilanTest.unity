@@ -363,6 +363,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_weaponData: {fileID: 11400000, guid: 805089c0cf4da60439303c71e3f68e29, type: 2}
   FirePoint: {fileID: 397476700}
+  m_automatic: 1
+  duration: 0.5
 --- !u!65 &1280806912
 BoxCollider:
   m_ObjectHideFlags: 0

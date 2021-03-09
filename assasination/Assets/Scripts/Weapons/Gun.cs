@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestGun : MonoBehaviour
+public class Gun : MonoBehaviour
 {
     public WeaponData m_weaponData;
     public GameObject FirePoint;
@@ -10,11 +10,12 @@ public class TestGun : MonoBehaviour
     //Time between shooting
     private float nextFire;
 
-    //For the Gizmo
-    private float duration;
-
     [Header("Automatic weapon")]
     public bool m_automatic;
+
+    [Header("Gizmo")]
+    public float duration;
+    
 
     void Update()
     {
@@ -40,17 +41,17 @@ public class TestGun : MonoBehaviour
     {
         
         //OnDrawGizmos();
-        Debug.DrawRay(transform.position, FirePoint.transform.TransformDirection(Vector3.forward) * m_weaponData.m_shootRange, Color.white, duration = 0.3f);
+        Debug.DrawRay(FirePoint.transform.position, FirePoint.transform.TransformDirection(Vector3.forward) * m_weaponData.m_shootRange, Color.white, duration);
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, FirePoint.transform.forward, out hit, m_weaponData.m_shootRange))
+        if (Physics.Raycast(FirePoint.transform.position, FirePoint.transform.forward, out hit, m_weaponData.m_shootRange))
         {
 
             //hier in zet je wat het moet doen
-            /*targethealth target = hit.transform.GetComponent<targethealth>();
+            EnemyMovement target = hit.transform.GetComponent<EnemyMovement>();
             if(target != null)
-            {
-                target.TakeDamage(m_weaponData.m_damage);
-            }*/
+            { 
+                target.RemoveHP(m_weaponData.m_damage);
+            }
 
         }
         Debug.Log("Shoot");
