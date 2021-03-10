@@ -107,4 +107,8 @@ public class PlayerMovement : MonoBehaviour
         m_SoundRange *= 2;
         m_Movespeed *= 2;
     }
+    public void TakeDamage()
+    {
+
+    }
 }
