@@ -44,22 +44,36 @@ public class EnemyMovement : MonoBehaviour
     {
         if (m_Alert)
         {
-            if (Vector3.Distance(gameObject.transform.position, m_navmeshagent.destination) < 0.3)
+            if (m_navmeshagent.pathStatus == NavMeshPathStatus.PathComplete)
             {
                 if (!m_SpottedTarget)
                 {
-                    Wander();
+                    StartCoroutine(WaitHere(m_Wandering, m_PublicEnemy.m_DurationWaitingAtWanderingLocation));
+                    m_Alert = false;
                 }
             }
+        }
+      
+         m_SpottedTarget= InFOV(transform, Playermanager.instance.gameObject.transform, m_PublicEnemy.Angle, m_PublicEnemy.Radius);
+        if (m_SpottedTarget)
+        {
+            m_navmeshagent.isStopped = true;
+            m_Wandering = false;
+            Vector3.RotateTowards(transform.rotation.eulerAngles, Playermanager.instance.gameObject.transform.position,5,5);
         }
         else
         {
             if (!m_newwait)
             {
                 Wander();
+                if (m_navmeshagent.isStopped == true && !m_SpottedTarget)
+                {
+                    m_Alert = false;
+                    m_Wandering = false;
+                    Wander();
+                }
             }
         }
-         m_SpottedTarget= InFOV(transform, Playermanager.instance.gameObject.transform, m_PublicEnemy.Angle, m_PublicEnemy.Radius);
     }
 
     private void Wander()
@@ -84,7 +98,8 @@ public class EnemyMovement : MonoBehaviour
         }
     }
     IEnumerator WaitHere(bool Change, float duration)
-    {
+    { 
+
         m_newwait = true;
         m_Wandering = false;
         yield return new WaitForSeconds(duration);
