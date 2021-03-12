@@ -15,7 +15,8 @@ public class Gun : MonoBehaviour
 
     [Header("Gizmo")]
     public float duration;
-    
+
+    public ParticleSystem m_muzzleFlash;
 
     void Update()
     {
@@ -39,9 +40,9 @@ public class Gun : MonoBehaviour
     }
     private void Shoot()
     {
-        
+        m_muzzleFlash.Play();
         //OnDrawGizmos();
-        Debug.DrawRay(FirePoint.transform.position, FirePoint.transform.TransformDirection(Vector3.forward) * m_weaponData.m_shootRange, Color.white, duration);
+        Debug.DrawRay(FirePoint.transform.position, FirePoint.transform.TransformDirection(Vector3.forward) * m_weaponData.m_shootRange, Color.red, duration);
         RaycastHit hit;
         if (Physics.Raycast(FirePoint.transform.position, FirePoint.transform.forward, out hit, m_weaponData.m_shootRange))
         {
