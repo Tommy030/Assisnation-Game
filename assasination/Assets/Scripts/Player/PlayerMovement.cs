@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -33,14 +35,24 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Collider[] m_EnemiesInRange;
     [SerializeField] private LayerMask m_EnemyLayer;
 
+    [Header("health vars")]
+    [SerializeField] private float m_MaxHealth;
+    [SerializeField] private float m_CurrentHealth;
+
+    [SerializeField] private Slider m_HealthBar;
+
     private void Start()
     {
         CurrentHeight = new Vector3(1, 1, 1);
+
+        m_CurrentHealth = m_MaxHealth;
+        m_HealthBar.maxValue = m_MaxHealth;
     }
 
     // Update is called once per frame
     void Update()
     {
+        m_HealthBar.value = m_CurrentHealth;
         m_IsGrounded = Physics.CheckSphere(m_GroundCheck.position, m_GroundDistance, m_GroundMask);
 
         if (m_IsGrounded && m_Velocity.y < 0)
@@ -90,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
         {
             for (int i = 0; i < m_EnemiesInRange.Length; i++)
             {
-
+                m_EnemiesInRange[i].GetComponent<enemyState>().hunting = true;
             }
         }
     }
@@ -107,8 +119,13 @@ public class PlayerMovement : MonoBehaviour
         m_SoundRange *= 2;
         m_Movespeed *= 2;
     }
-    public void TakeDamage()
+    public void TakeDamage(float _damage)
     {
+        m_CurrentHealth -= _damage;
 
+        if (m_CurrentHealth < 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 0);
+        }
     }
 }

@@ -7,45 +7,53 @@ public class EnemyShoot : MonoBehaviour
 
     [SerializeField] private GameObject m_Player;
 
-    private EnemyMovement Em;
+    private enemyState Es;
 
     [SerializeField] private float m_TimeBetweenShots;
     private float m_ShotTimer;
 
-    [SerializeField] private float m_HitChance;
+    [SerializeField] private int m_HitChance;
     [SerializeField] private float m_AttackRange;
+    [SerializeField] private float m_Damage = 10;
 
     [SerializeField] private bool Attackable;
     void Start()
     {
-        m_Player = GameObject.FindGameObjectWithTag("player");
-        Em = GetComponent<EnemyMovement>();
+        m_Player = GameObject.Find("player");
+        Es = GetComponent<enemyState>();
     }
 
     void Update()
     {
-        Vector3 dir = transform.position - m_Player.transform.position;
+        Vector3 dir = m_Player.transform.position - transform.position;
 
+        //Debug.DrawLine(transform.position, dir, Color.red);
+        Debug.DrawRay(transform.position, dir, Color.red);
         RaycastHit hit;
         if (Physics.Raycast(transform.position, dir,out hit, m_AttackRange))
         {
+            //Debug.Log("de hit: " + hit.collider.name + "player: " + m_Player.name);
             if (hit.collider.name == m_Player.name)
             {
+                //Debug.Log("ping1");
                 Attackable = true;
             }
         }
-        if (Em.m_SpottedTarget == true)
+        if (Es.hunting == true)
         {
             m_ShotTimer += Time.deltaTime;
             if (m_ShotTimer > m_TimeBetweenShots && Vector3.Distance(transform.position, m_Player.transform.position) < m_AttackRange)
             {
-                float Hitchance;
+                int Hitchance;
                 Hitchance = Random.Range(0, m_HitChance);
+                Debug.Log("ping en git:" + Hitchance);
 
                 if (Hitchance == 1 && Attackable == true)
                 {
-                    m_Player.GetComponent<PlayerMovement>().TakeDamage();
+                    m_Player.GetComponent<PlayerMovement>().TakeDamage(m_Damage);
+                    Debug.Log("ping");
                 }
+                m_ShotTimer = 0;
             }
         }
     }

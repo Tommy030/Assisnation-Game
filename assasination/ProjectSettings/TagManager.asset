@@ -12,12 +12,12 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Player
+  - ClimableWall
   - Lighting
   - Ground
   - Postprocessing
-  - 
+  - Enemy
   - 
   - 
   - 
