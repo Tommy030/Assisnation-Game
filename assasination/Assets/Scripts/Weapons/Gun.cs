@@ -13,11 +13,15 @@ public class Gun : MonoBehaviour
     [Header("Automatic weapon")]
     public bool m_automatic;
 
+    [Header("Muzzle Flash")]
+    public bool muzzleflashOn;
+    public ParticleSystem m_muzzleFlash;
+    
+
     [Header("Gizmo")]
     public float duration;
 
-    public ParticleSystem m_muzzleFlash;
-
+    
     void Update()
     {
         if (m_automatic == false)
@@ -40,7 +44,10 @@ public class Gun : MonoBehaviour
     }
     private void Shoot()
     {
-        m_muzzleFlash.Play();
+        if(muzzleflashOn == true)
+        {
+            m_muzzleFlash.Play();
+        }
         //OnDrawGizmos();
         Debug.DrawRay(FirePoint.transform.position, FirePoint.transform.TransformDirection(Vector3.forward) * m_weaponData.m_shootRange, Color.red, duration);
         RaycastHit hit;
