@@ -49,16 +49,15 @@ public class Gun : MonoBehaviour
             m_muzzleFlash.Play();
         }
         //OnDrawGizmos();
-        Debug.DrawRay(FirePoint.transform.position, FirePoint.transform.TransformDirection(Vector3.forward) * m_weaponData.m_shootRange, Color.red, duration);
+        Debug.DrawRay(FirePoint.transform.position, FirePoint.transform.TransformDirection(Vector3.forward) * m_weaponData.m_shootRange, Color.blue, duration);
         RaycastHit hit;
         if (Physics.Raycast(FirePoint.transform.position, FirePoint.transform.forward, out hit, m_weaponData.m_shootRange))
         {
-
-            //hier in zet je wat het moet doen
-            EnemyMovement target = hit.transform.GetComponent<EnemyMovement>();
+            
+            EnemyHealth target = hit.transform.GetComponent<EnemyHealth>();
             if(target != null)
             {
-                Debug.Log("Shoot");
+                Debug.Log("Hit " + m_weaponData.m_damage);
                 target.RemoveHP(m_weaponData.m_damage);
             }
 

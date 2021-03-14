@@ -182,18 +182,9 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-        public void RemoveHP(int damage)
-    {
-        if (m_PublicEnemy.Health - damage > 0)
-        {
-            m_PublicEnemy.Health -= damage;
-        }
-        else Death();
-    }
-    public void Death()
-    {
-        gameObject.SetActive(false);
-    }
+       
+    //health staat nu in enemyhealth script
+   
 }
 
 
