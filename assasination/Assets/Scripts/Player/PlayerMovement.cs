@@ -105,8 +105,15 @@ public class PlayerMovement : MonoBehaviour
                 m_EnemiesInRange[i].GetComponent<enemyState>().hunting = true;
             }
         }
+
+        
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.black;
+        Gizmos.DrawWireSphere(transform.position, m_SoundRange);
+    }
     private void StartCrouch()
     {
         CurrentHeight.y = 0.5f;

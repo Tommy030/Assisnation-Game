@@ -23,7 +23,6 @@ public class EnemyControl : MonoBehaviour
         Check1();
         player = GameObject.Find("player");
         hitCheckPoint1 = false;
-        chasingPlayer();
 
     }
     private void Update()
