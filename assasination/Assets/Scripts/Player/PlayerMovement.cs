@@ -10,10 +10,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private CharacterController m_Control;
     private Vector3 m_Velocity;
 
+    [SerializeField] private Transform Cam;
+
     [Header("movement variables")]
     [SerializeField] private float m_Movespeed;
     [SerializeField] private float m_Gravity = 9.81f;
     [SerializeField] private float m_JumpHeight;
+    [SerializeField] private float m_BunnyHopSpeedMulti = 2f;
 
     [Header("Groundcheck")]
     [SerializeField] private Transform m_GroundCheck;
@@ -29,6 +32,10 @@ public class PlayerMovement : MonoBehaviour
     [Header("Wall Climb vars")]
     [SerializeField] private LayerMask m_ClimbAbleWallmask;
     [SerializeField] private float CLimbSpeed;
+
+    [SerializeField] private bool m_WasOnWall;
+    [SerializeField] private float m_PushOffOffSet = 5f;
+    [SerializeField] private Transform HeadCheck;
 
     [Header("sneak vars")]
     [SerializeField] private float m_SoundRange;
@@ -63,24 +70,63 @@ public class PlayerMovement : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        Vector3 direction = transform.right * horizontal + transform.forward * vertical;
+        
 
-        m_Control.Move(direction * m_Movespeed * Time.deltaTime);
+        //m_Control.Move(direction * m_Movespeed * Time.deltaTime);
 
         if (Input.GetButtonDown("Jump") && m_IsGrounded)
         {
             m_Velocity.y = Mathf.Sqrt(m_JumpHeight * -2f * m_Gravity);
             Debug.Log("ping");
         }
+
+
         RaycastHit hit;
-        if (Physics.Raycast(m_GroundCheck.position, transform.forward, out hit, 1f, m_ClimbAbleWallmask) && !m_IsGrounded && Input.GetKey(KeyCode.W))
+        if (!Physics.Raycast(HeadCheck.position, transform.forward + new Vector3(0,1,0), 1f, m_ClimbAbleWallmask) && m_WasOnWall)
+        {
+            vertical = 0;
+            m_Velocity.y = Mathf.Sqrt(-m_PushOffOffSet * -2f * m_Gravity);
+            Invoke("DisableOffset", 0.3f);
+            //Debug.Log("should jump");
+        }
+        else if (Physics.Raycast(transform.position, transform.forward, out hit, 1f, m_ClimbAbleWallmask) && !m_IsGrounded && Input.GetKey(KeyCode.W))
         {
             m_Velocity.y = CLimbSpeed;
+            m_WasOnWall = true;
+            //vertical = 0;
+            //Debug.Log("should Climb");
+
         }
         else
         {
+           
             m_Velocity.y += -m_Gravity * Time.deltaTime;
+            //Debug.Log("should fall");
         }
+
+        Vector3 direction = transform.right * horizontal + transform.forward * vertical;
+        if (Input.GetButtonDown("Jump") && m_IsGrounded)
+        {
+            m_Velocity.y = Mathf.Sqrt(m_JumpHeight * -2f * m_Gravity);
+            Debug.Log("ping");
+        }
+
+        if (!m_IsGrounded)
+        {
+            //for (int i = 0; i < 3; i++)
+            //{
+                m_Control.Move(direction * m_Movespeed * m_BunnyHopSpeedMulti * Time.deltaTime);
+            //}
+        }
+        else
+        {
+            m_Control.Move(direction * m_Movespeed * Time.deltaTime);
+        }
+        
+        
+
+        Debug.DrawRay(HeadCheck.position, transform.forward + new Vector3(0, 1, 0), Color.blue);
+        Debug.DrawRay(transform.position, transform.forward, Color.red);
 
         m_Control.Move(m_Velocity * Time.deltaTime);
 
@@ -107,6 +153,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         
+    }
+
+    private void DisableOffset()
+    {
+        m_WasOnWall = false;
     }
 
     private void OnDrawGizmos()
