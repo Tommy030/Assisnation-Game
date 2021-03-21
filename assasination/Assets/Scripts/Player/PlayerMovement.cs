@@ -18,6 +18,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float m_JumpHeight;
     [SerializeField] private float m_BunnyHopSpeedMulti = 2f;
 
+    private float m_BaseMoveSpeed;
+
+    [Header("stamina variables")]
+    [SerializeField] private bool m_IsRunning;
+    [SerializeField] private float m_Stamina;
+    [SerializeField] private float m_MaxStamina;
+    [SerializeField] private float m_StaminaDrain = 1f;
+    [SerializeField] private float m_StaminaGain = 1f;
+    [SerializeField] private Slider m_StaminaBar;
+
     [Header("Groundcheck")]
     [SerializeField] private Transform m_GroundCheck;
     [SerializeField] private float m_GroundDistance;
@@ -50,15 +60,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        m_BaseMoveSpeed = m_Movespeed;
+
+        m_StaminaBar.maxValue = m_MaxStamina;
         CurrentHeight = new Vector3(1, 1, 1);
 
         m_CurrentHealth = m_MaxHealth;
         m_HealthBar.maxValue = m_MaxHealth;
+        m_Stamina = m_MaxStamina;
     }
 
     // Update is called once per frame
     void Update()
     {
+        m_StaminaBar.value = m_Stamina;
         m_HealthBar.value = m_CurrentHealth;
         m_IsGrounded = Physics.CheckSphere(m_GroundCheck.position, m_GroundDistance, m_GroundMask);
 
@@ -82,27 +97,38 @@ public class PlayerMovement : MonoBehaviour
 
 
         RaycastHit hit;
-        if (!Physics.Raycast(HeadCheck.position, transform.forward + new Vector3(0,1,0), 1f, m_ClimbAbleWallmask) && m_WasOnWall)
+        if (!Physics.Raycast(HeadCheck.position, transform.forward + new Vector3(0, 1, 0), 1f, m_ClimbAbleWallmask) && m_WasOnWall)
         {
             vertical = 0;
             m_Velocity.y = Mathf.Sqrt(-m_PushOffOffSet * -2f * m_Gravity);
             Invoke("DisableOffset", 0.3f);
             //Debug.Log("should jump");
         }
-        else if (Physics.Raycast(transform.position, transform.forward, out hit, 1f, m_ClimbAbleWallmask) && !m_IsGrounded && Input.GetKey(KeyCode.W))
+        else if (Physics.Raycast(transform.position, transform.forward, out hit, 1f, m_ClimbAbleWallmask) && !m_IsGrounded && Input.GetKey(KeyCode.W) && m_Stamina > (m_MaxStamina * 0.1))
         {
-            m_Velocity.y = CLimbSpeed;
             m_WasOnWall = true;
+
+            if (Input.GetKey(KeyCode.LeftControl))
+            {
+                vertical = 0;
+                horizontal = 0;
+                m_Velocity.y = 0;
+                Debug.Log("should stop climbing");
+            }
+            else
+            {
+                m_Velocity.y = CLimbSpeed;
+            }
             //vertical = 0;
             //Debug.Log("should Climb");
 
         }
         else
         {
-           
             m_Velocity.y += -m_Gravity * Time.deltaTime;
             //Debug.Log("should fall");
         }
+
 
         Vector3 direction = transform.right * horizontal + transform.forward * vertical;
         if (Input.GetButtonDown("Jump") && m_IsGrounded)
@@ -152,8 +178,38 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        if (m_Stamina > (m_MaxStamina * 0.1) && m_IsGrounded)
+        {
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                StartRun();
+            }
+            if (Input.GetKeyUp(KeyCode.LeftShift))
+            {
+                StopRun();
+            }
+        }
+        else if(m_Stamina <= 1 && m_IsRunning)
+        {
+            StopRun();
+        }
+
+     
+        // stamina
+
+        m_Stamina = Mathf.Clamp(m_Stamina, 0, m_MaxStamina);
+
+        if (m_IsRunning || m_WasOnWall)
+        {
+            m_Stamina -= m_StaminaDrain * Time.deltaTime;
+        }
+        else
+        {
+            m_Stamina += m_StaminaGain * Time.deltaTime;
+        }
         
     }
+
 
     private void DisableOffset()
     {
@@ -176,6 +232,18 @@ public class PlayerMovement : MonoBehaviour
         CurrentHeight.y = 1f;
         m_SoundRange *= 2;
         m_Movespeed *= 2;
+    } 
+    private void StartRun()
+    {
+        m_IsRunning = true;
+        m_Movespeed = m_BaseMoveSpeed * 2;
+        m_SoundRange *= 2;
+    } 
+    private void StopRun()
+    {
+        m_IsRunning = false;
+        m_Movespeed = m_BaseMoveSpeed / 2;
+        m_SoundRange /= 2;
     }
     public void TakeDamage(float _damage)
     {

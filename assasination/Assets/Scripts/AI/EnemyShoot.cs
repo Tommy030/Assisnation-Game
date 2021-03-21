@@ -17,6 +17,7 @@ public class EnemyShoot : MonoBehaviour
     [SerializeField] private float m_Damage = 10;
 
     [SerializeField] private bool Attackable;
+    [SerializeField] private ParticleSystem m_MuzzleFlash;
     void Start()
     {
         m_Player = GameObject.Find("player");
@@ -44,6 +45,7 @@ public class EnemyShoot : MonoBehaviour
             m_ShotTimer += Time.deltaTime;
             if (m_ShotTimer > m_TimeBetweenShots && Vector3.Distance(transform.position, m_Player.transform.position) < m_AttackRange)
             {
+                m_MuzzleFlash.Play();
                 int Hitchance;
                 Hitchance = Random.Range(0, m_HitChance);
                 Debug.Log("ping en git:" + Hitchance);

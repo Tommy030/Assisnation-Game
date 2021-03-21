@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MouseLook : MonoBehaviour
 {
@@ -8,6 +9,11 @@ public class MouseLook : MonoBehaviour
 
     [SerializeField] private Transform m_PlayerBody;
 
+    [SerializeField] Slider m_MouseSensBar;
+    [SerializeField] Text m_MouseSensVal;
+
+    [SerializeField] private GameObject m_UIItems;
+    [SerializeField] private GameObject m_UIBar;
     private float m_xRotation;
     void Start()
     {
@@ -18,6 +24,8 @@ public class MouseLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        m_MouseSensitivity = m_MouseSensBar.value;
+        m_MouseSensVal.text = m_MouseSensitivity.ToString("F0");
         float mouseX = Input.GetAxis("Mouse X") * m_MouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * m_MouseSensitivity * Time.deltaTime;
 
@@ -27,5 +35,32 @@ public class MouseLook : MonoBehaviour
         transform.localRotation = Quaternion.Euler(m_xRotation, 0, 0);
 
         m_PlayerBody.Rotate(Vector3.up * mouseX);
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (Time.timeScale == 0)
+            {
+                StartGame();
+            }
+            else
+            {
+                PauseGame();
+            }
+        }
+    }
+
+    private void PauseGame()
+    {
+        Time.timeScale = 0;
+        m_UIItems.SetActive(false);
+        m_UIBar.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+    }
+    private void StartGame()
+    {
+        Time.timeScale = 1;
+        m_UIItems.SetActive(true);
+        m_UIBar.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }
