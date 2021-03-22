@@ -36,6 +36,13 @@ public class enemyFieldOfView : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (es.dead == true)
+        {
+            this.enabled = false;
+        }
+    }
     private void LateUpdate()
     {
         DrawFieldOfView();

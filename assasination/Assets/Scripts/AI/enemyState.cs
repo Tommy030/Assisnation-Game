@@ -5,4 +5,5 @@ using UnityEngine;
 public class enemyState : MonoBehaviour
 {
     public bool hunting;
+    public bool dead;
 }

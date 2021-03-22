@@ -26,6 +26,10 @@ public class EnemyShoot : MonoBehaviour
 
     void Update()
     {
+        if (Es.dead)
+        {
+            this.enabled = false;
+        }
         Vector3 dir = m_Player.transform.position - transform.position;
 
         //Debug.DrawLine(transform.position, dir, Color.red);
