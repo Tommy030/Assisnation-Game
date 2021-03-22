@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.AI;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -9,13 +10,19 @@ public class EnemyHealth : MonoBehaviour
 
     private Target t;
     private enemyState es;
+    [SerializeField] private Animator m_Animator;
+    private NavMeshAgent m_NavMesh;
+    private CapsuleCollider m_Collider;
 
     private float m_CurrentHealth;
+    [SerializeField] private GameObject m_VisionCone;
     private void Start()
     {
         t = gameObject.GetComponent<Target>();
         es = gameObject.GetComponent<enemyState>();
         m_CurrentHealth = m_PublicEnemy.Health;
+        m_NavMesh = gameObject.GetComponent<NavMeshAgent>();
+        m_Collider = gameObject.GetComponent<CapsuleCollider>();
     }
     public void RemoveHP(int damage)
     {
@@ -33,6 +40,10 @@ public class EnemyHealth : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 0);
         }
-        gameObject.SetActive(false);
+        m_VisionCone.SetActive(false);
+        m_Collider.enabled = false;
+        m_Animator.enabled = false;
+        m_NavMesh.enabled = false;
+        es.dead = true;
     }
 }

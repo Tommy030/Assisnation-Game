@@ -34,57 +34,63 @@ public class EnemyControl : MonoBehaviour
     }
     private void Update()
     {
-
-        if (m_PlayerDetected == true)
+        if (es.dead == true)
         {
-            chasingPlayer();
-            NavMesh.speed = m_RunSpeed;
-            Debug.Log(NavMesh.isStopped);
+            this.enabled = false;
         }
         else
         {
-            NavMesh.speed = m_WalkSpeed;
-        }
-     
-        if (PatrolEnemy == true)
-        {
-            if (Vector3.Distance(gameObject.transform.position,checkPoint1.transform.position) < 3)
+            if (m_PlayerDetected == true)
             {
-                //hitCheckPoint1 = true;
-                Check1();
-            }
-            if (Vector3.Distance(gameObject.transform.position, checkPoint2.transform.position) < 3)
-            {
-                //hitCheckPoint2 = true;
-                Check2();
-            }
-
-
-            //if (hitCheckPoint1 == true)
-            //{
-            //    Check1();
-            //}
-            //else if (hitCheckPoint2 == true)
-            //{
-            //    Check2();
-            //}
-            if (Vector3.Distance(transform.position, CurrentDes) < 1 || NavMesh.isStopped == true)
-            {
-                m_Animator.SetBool("ReachedTarget", true);
-                Vector3 lookAt = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
-                transform.LookAt(lookAt);
+                chasingPlayer();
+                NavMesh.speed = m_RunSpeed;
+                Debug.Log(NavMesh.isStopped);
             }
             else
             {
-                m_Animator.SetBool("ReachedTarget", false);
+                NavMesh.speed = m_WalkSpeed;
             }
-        }
+
+            if (PatrolEnemy == true)
+            {
+                if (Vector3.Distance(gameObject.transform.position, checkPoint1.transform.position) < 3)
+                {
+                    //hitCheckPoint1 = true;
+                    Check1();
+                }
+                if (Vector3.Distance(gameObject.transform.position, checkPoint2.transform.position) < 3)
+                {
+                    //hitCheckPoint2 = true;
+                    Check2();
+                }
 
 
-        if (es.hunting == true)
-        {
-            chasingPlayer();
-        
+                //if (hitCheckPoint1 == true)
+                //{
+                //    Check1();
+                //}
+                //else if (hitCheckPoint2 == true)
+                //{
+                //    Check2();
+                //}
+                if (Vector3.Distance(transform.position, CurrentDes) < 1 || NavMesh.isStopped == true)
+                {
+                    m_Animator.SetBool("ReachedTarget", true);
+                    Vector3 lookAt = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+                    transform.LookAt(lookAt);
+                }
+                else
+                {
+                    m_Animator.SetBool("ReachedTarget", false);
+                }
+            }
+
+
+            if (es.hunting == true)
+            {
+                chasingPlayer();
+
+            }
         }
     }
     private void Check1()
