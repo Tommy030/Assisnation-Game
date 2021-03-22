@@ -6,7 +6,7 @@ public class Gun : MonoBehaviour
 {
     public WeaponData m_weaponData;
     public GameObject FirePoint;
-    
+
     //Time between shooting
     private float nextFire;
 
@@ -16,12 +16,21 @@ public class Gun : MonoBehaviour
     [Header("Muzzle Flash")]
     public bool muzzleflashOn;
     public ParticleSystem m_muzzleFlash;
+
+    [Header("Audio")]
+    public bool m_audioOn;
     
 
     [Header("Gizmo")]
     public float duration;
 
-    
+
+    private AudioSource m_audio;
+
+    private void Start()
+    {
+        m_audio = GetComponent<AudioSource>();
+    }
     void Update()
     {
         if (m_automatic == false)
@@ -32,7 +41,7 @@ public class Gun : MonoBehaviour
                 Shoot();
             }
         }
-        else if(m_automatic == true)
+        else
         {
             if(Input.GetMouseButton(0) && Time.time > nextFire)
             {
@@ -41,6 +50,7 @@ public class Gun : MonoBehaviour
             }
         }
         
+        
     }
     private void Shoot()
     {
@@ -48,6 +58,13 @@ public class Gun : MonoBehaviour
         {
             m_muzzleFlash.Play();
         }
+
+        if(m_audioOn == true)
+        {
+            m_audio.Play();
+        }
+        
+
         //OnDrawGizmos();
         Debug.DrawRay(FirePoint.transform.position, FirePoint.transform.TransformDirection(Vector3.forward) * m_weaponData.m_shootRange, Color.blue, duration);
         RaycastHit hit;
@@ -64,4 +81,5 @@ public class Gun : MonoBehaviour
         }
 
     }
+
 }

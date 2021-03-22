@@ -9,6 +9,7 @@ public class WeaponSwitching : MonoBehaviour
     [Header("Weapons")]
     public GameObject Pistol;
     public GameObject Knife;
+    public GameObject Sniper;
     void Start()
     {
         Pistol.SetActive(false);
@@ -26,18 +27,32 @@ public class WeaponSwitching : MonoBehaviour
         {
             SelectedWeapon = 1;
         }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            SelectedWeapon = 2;
+        }
 
         if (SelectedWeapon == 0)
         {
+            Sniper.SetActive(false);
             Knife.SetActive(false);
             Pistol.SetActive(true);
             
         }
-        else
+        else if (SelectedWeapon == 1)
         {
+            Sniper.SetActive(false);
             Pistol.SetActive(false);
             Knife.SetActive(true);
-           
+
         }
+        else if (SelectedWeapon == 2)
+        {
+            Knife.SetActive(false);
+            Pistol.SetActive(false);
+            Sniper.SetActive(true);
+
+        }
+        
     }
 }

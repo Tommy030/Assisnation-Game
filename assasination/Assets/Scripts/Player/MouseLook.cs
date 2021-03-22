@@ -15,16 +15,26 @@ public class MouseLook : MonoBehaviour
     [SerializeField] private GameObject m_UIItems;
     [SerializeField] private GameObject m_UIBar;
     private float m_xRotation;
+
+    public bool m_isScoping;
+    private void Awake()
+    {
+        
+    }
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        m_MouseSensitivity = m_MouseSensBar.value;
+        if(m_isScoping == false)
+        {
+            m_MouseSensitivity = m_MouseSensBar.value;
+        }
+
         m_MouseSensVal.text = m_MouseSensitivity.ToString("F0");
         float mouseX = Input.GetAxis("Mouse X") * m_MouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * m_MouseSensitivity * Time.deltaTime;
