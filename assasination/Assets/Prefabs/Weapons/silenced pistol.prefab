@@ -190,7 +190,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3938306263631092710}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: -0.7071068, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.03, y: 0, z: 0}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children:
@@ -202,7 +202,7 @@ Transform:
   - {fileID: 1559970079470131338}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 270, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3938306263630178568
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -264,13 +264,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff1db75ac66f1174ea36b882590dc648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_WeaponPoint: {fileID: 0}
   m_weaponData: {fileID: 11400000, guid: 03c4706c1fa9d85498e967c2d136c1c1, type: 2}
-  FirePoint: {fileID: 0}
+  FirePoint: {fileID: 8433577218564412717}
   m_automatic: 0
   muzzleflashOn: 1
   m_muzzleFlash: {fileID: 8632381648084527545}
   m_audioOn: 0
   duration: 0.5
+  SoundRange: 10
+  m_EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!82 &3938306263631092708
 AudioSource:
   m_ObjectHideFlags: 0

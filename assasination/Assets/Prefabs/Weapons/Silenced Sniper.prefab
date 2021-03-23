@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6526037038085040537}
   - component: {fileID: 6526037038087239494}
   - component: {fileID: 6526037038087239495}
+  - component: {fileID: 5846821142240183176}
   m_Layer: 0
   m_Name: Silenced Sniper
   m_TagString: Untagged
@@ -97,13 +98,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff1db75ac66f1174ea36b882590dc648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_WeaponPoint: {fileID: 0}
   m_weaponData: {fileID: 11400000, guid: 7f152f138d6d8214aa54fbdead3a95e7, type: 2}
-  FirePoint: {fileID: 0}
+  FirePoint: {fileID: 8405494546180898080}
   m_automatic: 0
   muzzleflashOn: 1
   m_muzzleFlash: {fileID: 8405494546180898081}
   m_audioOn: 0
   duration: 2
+  SoundRange: 10
+  m_EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!114 &6526037038087239495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,6 +125,20 @@ MonoBehaviour:
   Cam: {fileID: 0}
   sniperScope: {fileID: 0}
   ScopeValue: 25
+  m_ScopeSensitivity: 50
+--- !u!114 &5846821142240183176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6526037038087239513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bffb3308f0a83943acf3edee3142a27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_WeaponPoint: {fileID: 0}
 --- !u!1 &8405494545086368510
 GameObject:
   m_ObjectHideFlags: 0

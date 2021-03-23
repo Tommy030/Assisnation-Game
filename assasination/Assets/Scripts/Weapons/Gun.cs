@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
+    public GameObject m_WeaponPoint;
     public WeaponData m_weaponData;
     public GameObject FirePoint;
 
@@ -27,12 +28,20 @@ public class Gun : MonoBehaviour
 
     private AudioSource m_audio;
 
+
+    [SerializeField] private float SoundRange = 10f;
+    [SerializeField] private LayerMask m_EnemyLayer;
     private void Start()
     {
         m_audio = GetComponent<AudioSource>();
+        m_WeaponPoint = GameObject.Find("weaponpoint");
+        FirePoint = GameObject.Find("Main Camera");
     }
     void Update()
     {
+        
+        gameObject.transform.position = m_WeaponPoint.transform.position;
+        //gameObject.transform.rotation = m_WeaponPoint.transform.rotation;
         if (m_automatic == false)
         {
             if (Input.GetMouseButtonDown(0) && Time.time > nextFire)
@@ -49,8 +58,16 @@ public class Gun : MonoBehaviour
                 Shoot();
             }
         }
-        
-        
+
+        Collider[] enemiesInRange = Physics.OverlapSphere(transform.position, SoundRange, m_EnemyLayer);
+
+        if (enemiesInRange.Length != 0)
+        {
+            for (int i = 0; i < enemiesInRange.Length; i++)
+            {
+                enemiesInRange[i].GetComponent<enemyState>().hunting = true;
+            }
+        }
     }
     private void Shoot()
     {
@@ -70,12 +87,12 @@ public class Gun : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(FirePoint.transform.position, FirePoint.transform.forward, out hit, m_weaponData.m_shootRange))
         {
-            
+            Debug.Log(hit.collider.name);
             EnemyHealth target = hit.transform.GetComponent<EnemyHealth>();
             if(target != null)
             {
-                Debug.Log("Hit " + m_weaponData.m_damage);
-                target.RemoveHP(m_weaponData.m_damage);
+                //Debug.Log("Hit " + m_weaponData.m_damage);
+                target.RemoveHP(m_weaponData.m_damage, hit.collider);
             }
 
         }

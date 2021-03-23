@@ -44,7 +44,7 @@ public class EnemyControl : MonoBehaviour
             {
                 chasingPlayer();
                 NavMesh.speed = m_RunSpeed;
-                Debug.Log(NavMesh.isStopped);
+                //Debug.Log(NavMesh.isStopped);
             }
             else
             {
