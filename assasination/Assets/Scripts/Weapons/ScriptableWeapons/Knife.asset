@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_shootRange: 2
   m_fireRate: 1
-  m_damage: 100
+  m_damage: 200
+  m_ammoAmount: 0

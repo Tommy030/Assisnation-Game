@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Sniper
   m_EditorClassIdentifier: 
   m_shootRange: 500
-  m_fireRate: 3
+  m_fireRate: 2
+  m_reloadTime: 2
   m_damage: 100
+  m_ammoAmount: 20

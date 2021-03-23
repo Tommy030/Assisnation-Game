@@ -98,10 +98,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff1db75ac66f1174ea36b882590dc648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cb: 3
   m_WeaponPoint: {fileID: 0}
   m_weaponData: {fileID: 11400000, guid: 7f152f138d6d8214aa54fbdead3a95e7, type: 2}
   FirePoint: {fileID: 8405494546180898080}
   m_automatic: 0
+  m_reloadTime: 0
   muzzleflashOn: 1
   m_muzzleFlash: {fileID: 8405494546180898081}
   m_audioOn: 0
@@ -124,7 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cam: {fileID: 0}
   sniperScope: {fileID: 0}
-  ScopeValue: 25
+  ScopeValue: 10
   m_ScopeSensitivity: 50
 --- !u!114 &5846821142240183176
 MonoBehaviour:

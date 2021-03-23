@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
+    public enum CurrentWeapon {Knife ,Pistol, Assault_rifle,  Sniper}
+    [SerializeField] private CurrentWeapon cb;
     public GameObject m_WeaponPoint;
     public WeaponData m_weaponData;
     public GameObject FirePoint;
@@ -11,8 +13,9 @@ public class Gun : MonoBehaviour
     //Time between shooting
     private float nextFire;
 
-    [Header("Automatic weapon")]
+    [Header("weapon options")]
     public bool m_automatic;
+    
 
     [Header("Muzzle Flash")]
     public bool muzzleflashOn;
@@ -28,34 +31,80 @@ public class Gun : MonoBehaviour
 
     private AudioSource m_audio;
 
+    private bool m_useAmmo = true;
+    private int m_clipsize;
+    private int m_ammo;
+    private bool m_reloading = false;
+    private int ammo;
 
     [SerializeField] private float SoundRange = 10f;
     [SerializeField] private LayerMask m_EnemyLayer;
+
+    private int abc;
     private void Start()
     {
+        ammo = m_weaponData.m_ammoAmount;
         m_audio = GetComponent<AudioSource>();
         m_WeaponPoint = GameObject.Find("weaponpoint");
         FirePoint = GameObject.Find("Main Camera");
+
+        switch(cb)
+        {
+            case CurrentWeapon.Knife:
+                {
+                    m_useAmmo = false;
+                    break;
+                }
+            case CurrentWeapon.Pistol:
+                {
+                    m_clipsize = 12;
+                    break;
+                }
+            case CurrentWeapon.Assault_rifle:
+                {
+                    m_clipsize = 30;
+                    break;
+                }
+            case CurrentWeapon.Sniper:
+                {
+                    m_clipsize = 1;
+                    break;
+                }
+            default:
+                {
+                    Debug.Log("No Weapon Selected");
+                    break; 
+                }
+        }
+        m_ammo = m_clipsize;
     }
     void Update()
     {
         
         gameObject.transform.position = m_WeaponPoint.transform.position;
         //gameObject.transform.rotation = m_WeaponPoint.transform.rotation;
-        if (m_automatic == false)
+        if(m_reloading == false)
         {
-            if (Input.GetMouseButtonDown(0) && Time.time > nextFire)
+            if (m_automatic == false)
+            {
+                if (Input.GetMouseButtonDown(0) && Time.time > nextFire && m_ammo > 0)
+                {
+                    nextFire = Time.time + m_weaponData.m_fireRate;
+                    Shoot();
+                }
+            }
+            else if(Input.GetMouseButton(0) && Time.time > nextFire && m_ammo > 0)
             {
                 nextFire = Time.time + m_weaponData.m_fireRate;
                 Shoot();
             }
-        }
-        else
-        {
-            if(Input.GetMouseButton(0) && Time.time > nextFire)
+
+            if (m_ammo <= 0 && ammo != 0)
             {
-                nextFire = Time.time + m_weaponData.m_fireRate;
-                Shoot();
+                m_reloading = true;
+
+                StartCoroutine(Reloading());
+
             }
         }
 
@@ -68,9 +117,16 @@ public class Gun : MonoBehaviour
                 enemiesInRange[i].GetComponent<enemyState>().hunting = true;
             }
         }
+
+        
     }
     private void Shoot()
     {
+        if (m_useAmmo)
+        {
+            m_ammo--;
+        }
+        
         if(muzzleflashOn == true)
         {
             m_muzzleFlash.Play();
@@ -87,7 +143,7 @@ public class Gun : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(FirePoint.transform.position, FirePoint.transform.forward, out hit, m_weaponData.m_shootRange))
         {
-            Debug.Log(hit.collider.name);
+            //Debug.Log(hit.collider.name);
             EnemyHealth target = hit.transform.GetComponent<EnemyHealth>();
             if(target != null)
             {
@@ -97,6 +153,30 @@ public class Gun : MonoBehaviour
 
         }
 
+    }
+    
+    IEnumerator Reloading()
+    {
+        yield return new WaitForSeconds(m_weaponData.m_reloadTime);
+        abc = 0;
+        abc = (m_ammo -= m_clipsize);
+
+        if (ammo >= m_clipsize)
+        {
+            ammo -= -abc;
+            m_ammo = m_clipsize;
+        }
+        else
+        {
+            m_ammo = ammo;
+            ammo = 0;
+        }
+
+        Debug.Log("current ammo " + m_ammo);
+        Debug.Log("current ammo reserve " + ammo);
+
+        m_reloading = false;
+        
     }
 
 }

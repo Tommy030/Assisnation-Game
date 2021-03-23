@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_shootRange: 100
   m_fireRate: 0.15
+  m_reloadTime: 3
   m_damage: 20
+  m_ammoAmount: 60
