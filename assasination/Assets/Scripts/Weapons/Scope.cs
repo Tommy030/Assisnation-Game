@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Scope : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class Scope : MonoBehaviour
 
     private void Start()
     {
+        Cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        sniperScope = GameObject.Find("SS");
         StartScopeValue = Cam.GetComponent<Camera>().fieldOfView;
         scopesens = Cam.GetComponent<MouseLook>();
        
@@ -25,7 +28,7 @@ public class Scope : MonoBehaviour
         if (Input.GetMouseButton(1))
         {
             Cam.GetComponent<Camera>().fieldOfView = ScopeValue;
-            sniperScope.SetActive(true);
+            sniperScope.GetComponent<RawImage>().enabled = true;
             scopesens.m_isScoping = true;
             scopesens.m_MouseSensitivity = m_ScopeSensitivity;
 
@@ -33,7 +36,7 @@ public class Scope : MonoBehaviour
         else
         {
             Cam.GetComponent<Camera>().fieldOfView = StartScopeValue;
-            sniperScope.SetActive(false);
+            sniperScope.GetComponent<RawImage>().enabled = false;
             scopesens.m_isScoping = false;
 
         }

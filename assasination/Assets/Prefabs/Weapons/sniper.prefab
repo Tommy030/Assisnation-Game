@@ -9762,6 +9762,7 @@ GameObject:
   - component: {fileID: 8873507653091405735}
   - component: {fileID: 8873507653089472888}
   - component: {fileID: 8873507653089472889}
+  - component: {fileID: 3520841407391568293}
   m_Layer: 0
   m_Name: sniper
   m_TagString: Untagged
@@ -9845,13 +9846,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff1db75ac66f1174ea36b882590dc648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_WeaponPoint: {fileID: 0}
   m_weaponData: {fileID: 11400000, guid: 90cc7560ca46a204f950474f817564c8, type: 2}
-  FirePoint: {fileID: 0}
+  FirePoint: {fileID: 6130099410513398976}
   m_automatic: 1
   muzzleflashOn: 1
   m_muzzleFlash: {fileID: 6130099409460443935}
   m_audioOn: 0
   duration: 2
+  SoundRange: 10
+  m_EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!114 &8873507653089472889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9868,3 +9874,16 @@ MonoBehaviour:
   sniperScope: {fileID: 0}
   ScopeValue: 10
   m_ScopeSensitivity: 50
+--- !u!114 &3520841407391568293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8873507653089472871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bffb3308f0a83943acf3edee3142a27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_WeaponPoint: {fileID: 0}

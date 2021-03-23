@@ -52,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Collider[] m_EnemiesInRange;
     [SerializeField] private LayerMask m_EnemyLayer;
 
+    [SerializeField] private float m_BaseSoundRange;
     [Header("health vars")]
     [SerializeField] private float m_MaxHealth;
     [SerializeField] private float m_CurrentHealth;
@@ -61,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         m_BaseMoveSpeed = m_Movespeed;
+        m_BaseSoundRange = m_SoundRange;
 
         m_StaminaBar.maxValue = m_MaxStamina;
         CurrentHeight = new Vector3(1, 1, 1);
@@ -224,26 +226,26 @@ public class PlayerMovement : MonoBehaviour
     private void StartCrouch()
     {
         CurrentHeight.y = 0.5f;
-        m_SoundRange /= 2;
+        m_SoundRange = m_BaseSoundRange / 4;
         m_Movespeed /= 2;
     } 
     private void StopCrouch()
     {
         CurrentHeight.y = 1f;
-        m_SoundRange *= 2;
+        m_SoundRange = m_BaseSoundRange;
         m_Movespeed *= 2;
     } 
     private void StartRun()
     {
         m_IsRunning = true;
         m_Movespeed = m_BaseMoveSpeed * 2;
-        m_SoundRange *= 2;
+        m_SoundRange = m_BaseSoundRange * 2;
     } 
     private void StopRun()
     {
         m_IsRunning = false;
-        m_Movespeed = m_BaseMoveSpeed / 2;
-        m_SoundRange /= 2;
+        m_Movespeed = m_BaseMoveSpeed;
+        m_SoundRange = m_BaseSoundRange;
     }
     public void TakeDamage(float _damage)
     {

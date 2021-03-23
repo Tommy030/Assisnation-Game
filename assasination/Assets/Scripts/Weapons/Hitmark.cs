@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class Hitmark : MonoBehaviour
 {
-    public GameObject HitmarkImage;
-    public bool abc = false;
+    [SerializeField] private GameObject HitmarkImage;
+    public bool m_Hit = false;
+    private void Start()
+    {
+        HitmarkImage = GameObject.Find("Hit");
+        Invoke("HitReset", 0.1f);
+    }
     void Update()
     {
-        if (abc == true)
+
+        if (m_Hit == true)
         {
             HitmarkImage.SetActive(true);
             Invoke("HitReset", 0.1f);
-            abc = false;
+            m_Hit = false;
 
         }
         
