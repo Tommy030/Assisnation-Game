@@ -5,7 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class ObjectiveCompleted : MonoBehaviour
 {
-    [SerializeField] private bool ObjComp;
+    public static ObjectiveCompleted Instance;
+    private void Awake()
+    {
+        Instance = this;
+    }
+    public bool ObjComp;
     [SerializeField] private GameObject Player;
     [SerializeField] private int SceneToJumpTo = 1;
     void Start()

@@ -51,8 +51,8 @@ public class EnemyShoot : MonoBehaviour
             {
                 m_MuzzleFlash.Play();
                 int Hitchance;
-                Hitchance = Random.Range(0, m_HitChance);
-                //Debug.Log("ping en git:" + Hitchance);
+                Hitchance = Random.Range(1, m_HitChance + 1);
+                Debug.Log("ping en git:" + Hitchance);
 
                 if (Hitchance == 1 && Attackable == true)
                 {

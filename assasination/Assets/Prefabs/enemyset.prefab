@@ -946,6 +946,7 @@ GameObject:
   - component: {fileID: 3444099784294112946}
   - component: {fileID: 1135544850475457542}
   - component: {fileID: 1306185251634276990}
+  - component: {fileID: 6771762352864314073}
   m_Layer: 0
   m_Name: EnemySet
   m_TagString: Untagged
@@ -1036,11 +1037,12 @@ MonoBehaviour:
   NavMesh: {fileID: 6475843823524617158}
   es: {fileID: 6475843823524617156}
   PatrolEnemy: 1
-  m_PlayerDetected: 0
   m_Animator: {fileID: 942296525957561208}
   m_RunSpeed: 16
   m_WalkSpeed: 4
   m_NavMeshStopDis: 5
+  m_PlayerDetected: 0
+  m_CloseToPlayer: 0
 --- !u!114 &6475843823524617156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1133,6 +1135,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6771762352864314073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6475843823524617155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c953d2c07fe1d874db3e0c05eee0f6a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6475843824176139993
 GameObject:
   m_ObjectHideFlags: 0

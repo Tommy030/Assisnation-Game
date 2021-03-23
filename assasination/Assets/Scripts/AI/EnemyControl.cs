@@ -20,12 +20,15 @@ public class EnemyControl : MonoBehaviour
 
     private NavMeshPath NavMeshPath;
 
-    [SerializeField] private bool m_PlayerDetected;
-    [SerializeField] private Animator m_Animator;
+
+
     [SerializeField] private float m_RunSpeed = 16f;
     [SerializeField] private float m_WalkSpeed = 4f;
     [SerializeField] private float m_NavMeshStopDis = 5f;
- 
+
+    public Animator m_Animator;
+    public bool m_PlayerDetected;
+    public bool m_CloseToPlayer;
     private void Start()
     {
         NavMeshPath = new NavMeshPath();
@@ -75,13 +78,13 @@ public class EnemyControl : MonoBehaviour
                 //}
                 if (Vector3.Distance(transform.position, CurrentDes) < 1 || NavMesh.isStopped == true)
                 {
-                    m_Animator.SetBool("ReachedTarget", true);
+                    m_CloseToPlayer = true;
                     Vector3 lookAt = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
                     transform.LookAt(lookAt);
                 }
                 else
                 {
-                    m_Animator.SetBool("ReachedTarget", false);
+                    m_CloseToPlayer = false;
                 }
             }
 

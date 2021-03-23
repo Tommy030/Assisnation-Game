@@ -46,7 +46,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if (t != null)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 0);
+            ObjectiveCompleted.Instance.ObjComp = true;
         }
         
         if (m_NavMesh != null)
