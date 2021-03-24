@@ -23,13 +23,17 @@ public class MouseLook : MonoBehaviour
     }
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        
         
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Time.timeScale == 1)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
         if(m_isScoping == false)
         {
             m_MouseSensitivity = m_MouseSensBar.value;

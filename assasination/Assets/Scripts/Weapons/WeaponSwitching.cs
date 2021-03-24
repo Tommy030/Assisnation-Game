@@ -58,25 +58,31 @@ public class WeaponSwitching : MonoBehaviour
         SelectedWeapons[SelectedWeapons.Count - 1].SetActive(false);
         GameObject obj = Instantiate(Pistol);
         SelectedWeapons.Add(obj);
+        Time.timeScale = 1;
+
     }
     public void SelectSPistol()
     {
         SelectedWeapons[SelectedWeapons.Count - 1].SetActive(false);
         GameObject obj = Instantiate(S_Pistol);
         SelectedWeapons.Add(obj);
+        Time.timeScale = 1;
+
     }
     public void SelectRifle()
     {
         SelectedWeapons[SelectedWeapons.Count - 1].SetActive(false);
         GameObject obj = Instantiate(Rifle);
         SelectedWeapons.Add(obj);
+        Time.timeScale = 1;
+
     }
     public void SelectSniper()
     {
         SelectedWeapons[SelectedWeapons.Count - 1].SetActive(false);
         GameObject obj = Instantiate(Sniper);
-        obj.GetComponent<Scope>().sniperScope = Scope; 
-
+        obj.GetComponent<Scope>().sniperScope = Scope;
+        Time.timeScale = 1;
         SelectedWeapons.Add(obj);
     }
     public void SelectSSniper()
@@ -84,5 +90,7 @@ public class WeaponSwitching : MonoBehaviour
         SelectedWeapons[SelectedWeapons.Count - 1].SetActive(false);
         GameObject obj = Instantiate(S_Sniper);
         SelectedWeapons.Add(obj);
+        Time.timeScale = 1;
+
     }
 }
