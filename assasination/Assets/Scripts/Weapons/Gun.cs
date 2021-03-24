@@ -41,7 +41,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private float SoundRange = 10f;
     [SerializeField] private LayerMask m_EnemyLayer;
 
-    public Stack<Clip> Clips = new Stack<Clip>();
+    
 
     private int abc;
     private void Start()
@@ -79,10 +79,7 @@ public class Gun : MonoBehaviour
                     break; 
                 }
         }
-        for (int i = 0; i < 20; i++)
-        {
-            Clips.Push(new Clip(m_clipsize));
-        }
+       
         m_ammo = m_clipsize;
     }
     void Update()
