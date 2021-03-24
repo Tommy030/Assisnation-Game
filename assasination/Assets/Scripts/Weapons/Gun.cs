@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Gun : MonoBehaviour
 {
     public enum CurrentWeapon {Knife ,Pistol, Assault_rifle,  Sniper}
@@ -40,6 +41,8 @@ public class Gun : MonoBehaviour
     [SerializeField] private float SoundRange = 10f;
     [SerializeField] private LayerMask m_EnemyLayer;
 
+    public Stack<Clip> Clips = new Stack<Clip>();
+
     private int abc;
     private void Start()
     {
@@ -76,6 +79,10 @@ public class Gun : MonoBehaviour
                     break; 
                 }
         }
+        for (int i = 0; i < 20; i++)
+        {
+            Clips.Push(new Clip(m_clipsize));
+        }
         m_ammo = m_clipsize;
     }
     void Update()
@@ -104,7 +111,12 @@ public class Gun : MonoBehaviour
                 m_reloading = true;
 
                 StartCoroutine(Reloading());
+                StartCoroutine(Reload());
 
+            }
+            if (Input.GetKey(KeyCode.R))
+            {
+                StartCoroutine(Reload());
             }
         }
 
@@ -178,5 +190,26 @@ public class Gun : MonoBehaviour
         m_reloading = false;
         
     }
+    private IEnumerator Reload()
+    {
+        yield return new WaitForSeconds(m_weaponData.m_reloadTime);
+        //12 
+        if (ammo >= 0)
+        {
+            int AmountNeeded = m_clipsize - m_ammo;
+            if (ammo >= AmountNeeded)
+            {
+                ammo -= AmountNeeded;
+                m_ammo = m_clipsize;
+            }
+            else if( ammo> 0)
+            {
+                m_ammo += ammo;
+            }
+        }
 
+        Debug.Log("current ammo " + m_ammo);
+        Debug.Log("current ammo reserve " + ammo);
+
+    }
 }
