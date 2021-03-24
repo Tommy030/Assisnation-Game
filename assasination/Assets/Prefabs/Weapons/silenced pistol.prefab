@@ -264,13 +264,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff1db75ac66f1174ea36b882590dc648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cb: 1
   m_WeaponPoint: {fileID: 0}
   m_weaponData: {fileID: 11400000, guid: 03c4706c1fa9d85498e967c2d136c1c1, type: 2}
   FirePoint: {fileID: 8433577218564412717}
   m_automatic: 0
+  m_reloadTime: 0
   muzzleflashOn: 1
   m_muzzleFlash: {fileID: 8632381648084527545}
-  m_audioOn: 0
+  m_audioOn: 1
   duration: 0.5
   SoundRange: 10
   m_EnemyLayer:

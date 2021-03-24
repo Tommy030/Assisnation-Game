@@ -15,14 +15,14 @@ public class ObjectiveCompleted : MonoBehaviour
     [SerializeField] private int SceneToJumpTo = 1;
     void Start()
     {
-        Debug.Log("ping");
+        //Debug.Log("ping");
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Vector3.Distance(gameObject.transform.position, Player.transform.position));
+        //Debug.Log(Vector3.Distance(gameObject.transform.position, Player.transform.position));
 
         if (ObjComp == true && Vector3.Distance(gameObject.transform.position,Player.transform.position) < 5)
         {

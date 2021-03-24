@@ -346,14 +346,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff1db75ac66f1174ea36b882590dc648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cb: 1
   m_WeaponPoint: {fileID: 0}
   m_weaponData: {fileID: 11400000, guid: 34fe45f5c07f02044821051cd470b8f6, type: 2}
   FirePoint: {fileID: 6512151687818944288}
   m_automatic: 0
+  m_reloadTime: 1
   muzzleflashOn: 1
   m_muzzleFlash: {fileID: 4752279534923650923}
   m_audioOn: 0
   duration: 0.5
+  SoundRange: 10
+  m_EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!82 &42978809342534966
 AudioSource:
   m_ObjectHideFlags: 0
