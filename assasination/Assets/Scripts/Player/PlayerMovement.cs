@@ -59,6 +59,9 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private Slider m_HealthBar;
 
+    [SerializeField] private AudioSource WalkSound;
+    [SerializeField] private AudioSource RunSound;
+
     private void Start()
     {
         m_BaseMoveSpeed = m_Movespeed;
@@ -87,7 +90,19 @@ public class PlayerMovement : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        
+        if (Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))
+        {
+            RunSound.Stop();
+            WalkSound.Play();
+            Debug.Log("Ping;");
+        }
+        else if(Input.GetButtonUp("Horizontal") || Input.GetButtonUp("Vertical"))
+        {
+            RunSound.Stop();
+            WalkSound.Stop();
+            Debug.Log("Ping2");
+
+        }
 
         //m_Control.Move(direction * m_Movespeed * Time.deltaTime);
 
@@ -237,12 +252,16 @@ public class PlayerMovement : MonoBehaviour
     } 
     private void StartRun()
     {
+        RunSound.Play();
+        WalkSound.Stop();
         m_IsRunning = true;
         m_Movespeed = m_BaseMoveSpeed * 2;
         m_SoundRange = m_BaseSoundRange * 2;
     } 
     private void StopRun()
     {
+        RunSound.Stop();
+        WalkSound.Play();
         m_IsRunning = false;
         m_Movespeed = m_BaseMoveSpeed;
         m_SoundRange = m_BaseSoundRange;
