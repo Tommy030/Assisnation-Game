@@ -26,6 +26,7 @@ public class ObjectiveCompleted : MonoBehaviour
 
         if (ObjComp == true && Vector3.Distance(gameObject.transform.position,Player.transform.position) < 5)
         {
+            Score.Instance.CheckHighScore();
             Debug.Log("ping");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + SceneToJumpTo);
         }

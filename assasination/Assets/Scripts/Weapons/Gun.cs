@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 
 public class Gun : MonoBehaviour
@@ -42,9 +43,16 @@ public class Gun : MonoBehaviour
     [SerializeField] private LayerMask m_EnemyLayer;
 
 
+
     public Vector3 upRecoil;
     Vector3 originalRot;
     
+
+    private TMP_Text AmmoText;
+    
+    
+    private int abc;
+
     private void Start()
     {
         originalRot = transform.localEulerAngles;
@@ -54,7 +62,8 @@ public class Gun : MonoBehaviour
         m_WeaponPoint = GameObject.Find("weaponpoint");
         FirePoint = GameObject.Find("Main Camera");
 
-        switch(cb)
+
+        switch (cb)
         {
             case CurrentWeapon.Knife:
                 {
@@ -87,7 +96,10 @@ public class Gun : MonoBehaviour
     }
     void Update()
     {
-        
+        if (Time.timeScale == 1)
+        {
+            AmmoText = GameObject.Find("Ammotext").GetComponent<TMP_Text>();
+        }
         gameObject.transform.position = m_WeaponPoint.transform.position;
         //gameObject.transform.rotation = m_WeaponPoint.transform.rotation;
         if(m_reloading == false)
@@ -166,17 +178,52 @@ public class Gun : MonoBehaviour
         {
             //Debug.Log(hit.collider.name);
             EnemyHealth target = hit.transform.GetComponent<EnemyHealth>();
+            Window window = hit.transform.GetComponent<Window>();
+            Sus sus = hit.transform.GetComponent<Sus>();
+            if (window != null)
+            {
+                window.BreakWindow();
+            }
             if(target != null)
             {
                 //Debug.Log("Hit " + m_weaponData.m_damage);
                 target.RemoveHP(m_weaponData.m_damage, hit.collider);
+            }
+            if (sus != null)
+            {
+                sus.DunDun();
             }
 
         }
 
     }
     
-    
+
+    IEnumerator Reloading()
+    {
+        yield return new WaitForSeconds(m_weaponData.m_reloadTime);
+        abc = 0;
+        abc = (m_ammo -= m_clipsize);
+
+        if (ammo >= m_clipsize)
+        {
+            ammo -= -abc;
+            m_ammo = m_clipsize;
+        }
+        else
+        {
+            m_ammo = ammo;
+            ammo = 0;
+        }
+
+        AmmoText.text = m_ammo + "/" + ammo;
+        Debug.Log("current ammo " + m_ammo);
+        Debug.Log("current ammo reserve " + ammo);
+
+        m_reloading = false;
+        
+    }
+
     private IEnumerator Reload()
     {
         yield return new WaitForSeconds(m_weaponData.m_reloadTime);
