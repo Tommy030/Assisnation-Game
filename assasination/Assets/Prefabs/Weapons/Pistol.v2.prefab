@@ -351,7 +351,6 @@ MonoBehaviour:
   m_weaponData: {fileID: 11400000, guid: 34fe45f5c07f02044821051cd470b8f6, type: 2}
   FirePoint: {fileID: 6512151687818944288}
   m_automatic: 0
-  m_reloadTime: 1
   muzzleflashOn: 1
   m_muzzleFlash: {fileID: 4752279534923650923}
   m_audioOn: 0
@@ -360,6 +359,7 @@ MonoBehaviour:
   m_EnemyLayer:
     serializedVersion: 2
     m_Bits: 0
+  upRecoil: {x: 15, y: 0, z: 0}
 --- !u!82 &42978809342534966
 AudioSource:
   m_ObjectHideFlags: 0

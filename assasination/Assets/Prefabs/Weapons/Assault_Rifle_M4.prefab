@@ -9769,7 +9769,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6539643392339708463
 Transform:
   m_ObjectHideFlags: 0
@@ -9777,7 +9777,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5875697405467545749}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: -0.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -9785,7 +9785,7 @@ Transform:
   - {fileID: 9066412851933222789}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &7885416542340154762
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -9852,7 +9852,6 @@ MonoBehaviour:
   m_weaponData: {fileID: 11400000, guid: 7aa578e72e42db048ae2072fea6e624e, type: 2}
   FirePoint: {fileID: 7674959556444520757}
   m_automatic: 1
-  m_reloadTime: 0
   muzzleflashOn: 1
   m_muzzleFlash: {fileID: 745655567473613382}
   m_audioOn: 1
@@ -9861,6 +9860,7 @@ MonoBehaviour:
   m_EnemyLayer:
     serializedVersion: 2
     m_Bits: 0
+  upRecoil: {x: 2, y: 0, z: 0}
 --- !u!82 &5875697405467545751
 AudioSource:
   m_ObjectHideFlags: 0

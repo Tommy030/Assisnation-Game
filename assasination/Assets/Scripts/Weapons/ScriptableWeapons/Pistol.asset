@@ -16,4 +16,4 @@ MonoBehaviour:
   m_fireRate: 0.3
   m_reloadTime: 1
   m_damage: 56
-  m_ammoAmount: 20
+  m_ammoAmount: 36

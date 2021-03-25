@@ -599,13 +599,25 @@ PrefabInstance:
         type: 3}
       propertyPath: Knife
       value: 
-      objectReference: {fileID: 3804616112125052775, guid: 2543d85b31d0b94428470868a9e7b06c,
+      objectReference: {fileID: 4851471654380606662, guid: 2543d85b31d0b94428470868a9e7b06c,
         type: 3}
     - target: {fileID: 3183769479611714683, guid: 47c8063ca7f9eea468a096e1aae7d5cb,
         type: 3}
       propertyPath: Scope
       value: 
       objectReference: {fileID: 861502815}
+    - target: {fileID: 3183769479611714683, guid: 47c8063ca7f9eea468a096e1aae7d5cb,
+        type: 3}
+      propertyPath: Sniper
+      value: 
+      objectReference: {fileID: 2629741229778957785, guid: 10a083c97e011b44589628a76f4a573d,
+        type: 3}
+    - target: {fileID: 3183769479611714683, guid: 47c8063ca7f9eea468a096e1aae7d5cb,
+        type: 3}
+      propertyPath: S_Sniper
+      value: 
+      objectReference: {fileID: 321903887368849589, guid: 76ad46b4214e16e49852298b5b894aae,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47c8063ca7f9eea468a096e1aae7d5cb, type: 3}
 --- !u!1 &127800650

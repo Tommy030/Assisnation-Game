@@ -9,7 +9,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private CurrentWeapon cb;
     public GameObject m_WeaponPoint;
     public WeaponData m_weaponData;
-    public GameObject FirePoint;
+    private GameObject FirePoint;
 
     //Time between shooting
     private float nextFire;
@@ -41,11 +41,14 @@ public class Gun : MonoBehaviour
     [SerializeField] private float SoundRange = 10f;
     [SerializeField] private LayerMask m_EnemyLayer;
 
-    
 
-    private int abc;
+    public Vector3 upRecoil;
+    Vector3 originalRot;
+    
     private void Start()
     {
+        originalRot = transform.localEulerAngles;
+
         ammo = m_weaponData.m_ammoAmount;
         m_audio = GetComponent<AudioSource>();
         m_WeaponPoint = GameObject.Find("weaponpoint");
@@ -95,26 +98,35 @@ public class Gun : MonoBehaviour
                 {
                     nextFire = Time.time + m_weaponData.m_fireRate;
                     Shoot();
+                    AddRecoil();
                 }
             }
             else if(Input.GetMouseButton(0) && Time.time > nextFire && m_ammo > 0)
             {
                 nextFire = Time.time + m_weaponData.m_fireRate;
                 Shoot();
+                AddRecoil();
             }
-
-            if (m_ammo <= 0 && ammo != 0)
+            if(m_useAmmo == true)
             {
-                m_reloading = true;
-
-                StartCoroutine(Reloading());
-                StartCoroutine(Reload());
-
+                if (Input.GetKey(KeyCode.R) || m_ammo <= 0 && ammo != 0)
+                {
+                    m_reloading = true;
+                    StartCoroutine(Reload());
+                }
             }
-            if (Input.GetKey(KeyCode.R))
+
+
+            if(cb == CurrentWeapon.Knife)
             {
-                StartCoroutine(Reload());
+                if (Input.GetMouseButton(0) && Time.time > nextFire) 
+                {
+                    nextFire = Time.time + m_weaponData.m_fireRate;
+                    Shoot();
+                    AddRecoil();
+                }
             }
+            
         }
 
         Collider[] enemiesInRange = Physics.OverlapSphere(transform.position, SoundRange, m_EnemyLayer);
@@ -164,29 +176,7 @@ public class Gun : MonoBehaviour
 
     }
     
-    IEnumerator Reloading()
-    {
-        yield return new WaitForSeconds(m_weaponData.m_reloadTime);
-        abc = 0;
-        abc = (m_ammo -= m_clipsize);
-
-        if (ammo >= m_clipsize)
-        {
-            ammo -= -abc;
-            m_ammo = m_clipsize;
-        }
-        else
-        {
-            m_ammo = ammo;
-            ammo = 0;
-        }
-
-        Debug.Log("current ammo " + m_ammo);
-        Debug.Log("current ammo reserve " + ammo);
-
-        m_reloading = false;
-        
-    }
+    
     private IEnumerator Reload()
     {
         yield return new WaitForSeconds(m_weaponData.m_reloadTime);
@@ -207,6 +197,17 @@ public class Gun : MonoBehaviour
 
         Debug.Log("current ammo " + m_ammo);
         Debug.Log("current ammo reserve " + ammo);
+        m_reloading = false;
+    }
 
+    private void AddRecoil()
+    {
+        transform.localEulerAngles += upRecoil;
+        Invoke("StopRecoil", 0.1f);
+        
+    }
+    private void StopRecoil()
+    {
+        transform.localEulerAngles = originalRot;
     }
 }
