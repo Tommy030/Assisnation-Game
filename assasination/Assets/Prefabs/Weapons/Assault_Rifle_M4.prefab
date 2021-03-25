@@ -9763,9 +9763,11 @@ GameObject:
   - component: {fileID: 5875697405467545768}
   - component: {fileID: 5875697405467545751}
   - component: {fileID: 5875697405467545750}
+  - component: {fileID: 5489447588027508288}
+  - component: {fileID: -4661299741289278581}
   m_Layer: 0
   m_Name: Assault_Rifle_M4
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9855,11 +9857,14 @@ MonoBehaviour:
   m_muzzleFlash: {fileID: 745655567473613382}
   m_audioOn: 1
   duration: 2
+  m_reloading: 0
+  AmmoReserve: 0
   SoundRange: 10
   m_EnemyLayer:
     serializedVersion: 2
     m_Bits: 0
   upRecoil: {x: 2, y: 0, z: 0}
+  IsSelected: 0
 --- !u!82 &5875697405467545751
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10052,6 +10057,35 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &5489447588027508288
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5875697405467545749}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.8424282, y: 0.31562808, z: 1.4646403}
+  m_Center: {x: -0.69728404, y: -0.0012679998, z: 0.056896016}
+--- !u!54 &-4661299741289278581
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5875697405467545749}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &7674959556444520757
 GameObject:
   m_ObjectHideFlags: 0

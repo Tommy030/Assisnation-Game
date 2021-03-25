@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Shootable
   - GameManager
+  - Weapon
   layers:
   - Default
   - TransparentFX
