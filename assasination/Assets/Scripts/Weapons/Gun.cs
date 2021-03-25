@@ -154,20 +154,21 @@ public class Gun : MonoBehaviour
 
             }
 
-            Collider[] enemiesInRange = Physics.OverlapSphere(transform.position, SoundRange, m_EnemyLayer);
-
-            if (enemiesInRange.Length != 0)
-            {
-                for (int i = 0; i < enemiesInRange.Length; i++)
-                {
-                    enemiesInRange[i].GetComponent<enemyState>().hunting = true;
-                }
-            }
         }
         
     }
     private void Shoot()
     {
+
+        Collider[] enemiesInRange = Physics.OverlapSphere(transform.position, SoundRange, m_EnemyLayer);
+
+        if (enemiesInRange.Length != 0)
+        {
+            for (int i = 0; i < enemiesInRange.Length; i++)
+            {
+                enemiesInRange[i].GetComponent<enemyState>().hunting = true;
+            }
+        }
         if (m_useAmmo)
         {
             CurrentAmmo--;
