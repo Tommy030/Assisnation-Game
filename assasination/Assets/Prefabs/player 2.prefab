@@ -151,9 +151,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Control: {fileID: 1503269397034398844}
   Cam: {fileID: 1503269397588754043}
-  m_Movespeed: 12
-  m_Gravity: 15
-  m_JumpHeight: -2
+  m_Movespeed: 8
+  m_Gravity: 18
+  m_JumpHeight: -1.5
   m_BunnyHopSpeedMulti: 1.5
   m_IsRunning: 0
   m_Stamina: 0
@@ -181,9 +181,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   m_BaseSoundRange: 0
-  m_MaxHealth: 100
+  m_MaxHealth: 75
   m_CurrentHealth: 0
   m_HealthBar: {fileID: 0}
+  WalkSound: {fileID: 0}
+  RunSound: {fileID: 0}
 --- !u!114 &2627304883857987512
 MonoBehaviour:
   m_ObjectHideFlags: 0

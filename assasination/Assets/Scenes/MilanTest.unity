@@ -469,7 +469,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1140242526
 GameObject:
@@ -645,6 +645,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5875697405467545751, guid: fdd775d3dc7fffa4f9a654bd5bceef95,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5875697405467545768, guid: fdd775d3dc7fffa4f9a654bd5bceef95,
         type: 3}
       propertyPath: FirePoint
@@ -803,6 +808,11 @@ PrefabInstance:
       propertyPath: FirePoint
       value: 
       objectReference: {fileID: 854456164}
+    - target: {fileID: 2833915723916439896, guid: 2543d85b31d0b94428470868a9e7b06c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3804616112125052775, guid: 2543d85b31d0b94428470868a9e7b06c,
         type: 3}
       propertyPath: m_Name
@@ -872,6 +882,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 321903887368849589, guid: 76ad46b4214e16e49852298b5b894aae,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2650230795890610470, guid: 76ad46b4214e16e49852298b5b894aae,
+        type: 3}
+      propertyPath: Cam
+      value: 
+      objectReference: {fileID: 854456166}
+    - target: {fileID: 2650230795890610470, guid: 76ad46b4214e16e49852298b5b894aae,
+        type: 3}
+      propertyPath: sniperScope
+      value: 
+      objectReference: {fileID: 250978854}
+    - target: {fileID: 3551657500219516007, guid: 76ad46b4214e16e49852298b5b894aae,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3551657500219516007, guid: 76ad46b4214e16e49852298b5b894aae,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6526037038087239494, guid: 76ad46b4214e16e49852298b5b894aae,
         type: 3}
       propertyPath: FirePoint

@@ -30,18 +30,22 @@ public class WeaponSwitching : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
+            
             SelectedWeapon = 0;
+            
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
+
             SelectedWeapon = 1;
         }
 
         if (SelectedWeapon == 0)
         {
+            
             SelectedWeapons[0].SetActive(true);
             SelectedWeapons[SelectedWeapons.Count - 1].SetActive(false);
         }

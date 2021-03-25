@@ -36,7 +36,7 @@ public class Gun : MonoBehaviour
     private bool m_useAmmo = true;
     private int m_clipsize;
     private int m_ammo;
-    private bool m_reloading = false;
+    public bool m_reloading = false;
     private int ammo;
 
     [SerializeField] private float SoundRange = 10f;
@@ -72,17 +72,21 @@ public class Gun : MonoBehaviour
                 }
             case CurrentWeapon.Pistol:
                 {
+                    
                     m_clipsize = 12;
+                    m_useAmmo = true;
                     break;
                 }
             case CurrentWeapon.Assault_rifle:
                 {
                     m_clipsize = 30;
+                    m_useAmmo = true;
                     break;
                 }
             case CurrentWeapon.Sniper:
                 {
                     m_clipsize = 1;
+                    m_useAmmo = true;
                     break;
                 }
             default:
@@ -99,6 +103,7 @@ public class Gun : MonoBehaviour
         if (Time.timeScale == 1)
         {
             AmmoText = GameObject.Find("Ammotext").GetComponent<TMP_Text>();
+            AmmoText.text = m_ammo + "/" + ammo;
         }
         gameObject.transform.position = m_WeaponPoint.transform.position;
         //gameObject.transform.rotation = m_WeaponPoint.transform.rotation;
@@ -125,6 +130,7 @@ public class Gun : MonoBehaviour
                 {
                     m_reloading = true;
                     StartCoroutine(Reload());
+                    
                 }
             }
 
@@ -199,29 +205,25 @@ public class Gun : MonoBehaviour
     }
     
 
-    IEnumerator Reloading()
+    public void Reloading()
     {
-        yield return new WaitForSeconds(m_weaponData.m_reloadTime);
-        abc = 0;
-        abc = (m_ammo -= m_clipsize);
-
-        if (ammo >= m_clipsize)
+        if (ammo >= 0)
         {
-            ammo -= -abc;
-            m_ammo = m_clipsize;
-        }
-        else
-        {
-            m_ammo = ammo;
-            ammo = 0;
+            int AmountNeeded = m_clipsize - m_ammo;
+            if (ammo >= AmountNeeded)
+            {
+                ammo -= AmountNeeded;
+                m_ammo = m_clipsize;
+            }
+            else if (ammo > 0)
+            {
+                m_ammo += ammo;
+            }
         }
 
-        AmmoText.text = m_ammo + "/" + ammo;
         Debug.Log("current ammo " + m_ammo);
         Debug.Log("current ammo reserve " + ammo);
-
         m_reloading = false;
-        
     }
 
     private IEnumerator Reload()

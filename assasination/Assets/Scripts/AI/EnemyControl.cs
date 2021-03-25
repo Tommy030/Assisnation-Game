@@ -30,8 +30,8 @@ public class EnemyControl : MonoBehaviour
     public bool m_PlayerDetected;
     public bool m_CloseToPlayer;
 
-    [SerializeField] private AudioSource RunningSound;
-    [SerializeField] private AudioSource WalkingSound;
+    //[SerializeField] private AudioSource RunningSound;
+    //[SerializeField] private AudioSource WalkingSound;
     private void Start()
     {
         NavMeshPath = new NavMeshPath();
@@ -51,13 +51,13 @@ public class EnemyControl : MonoBehaviour
                 chasingPlayer();
                 NavMesh.speed = m_RunSpeed;
                 //Debug.Log(NavMesh.isStopped);
-                RunningSound.Play();
-                WalkingSound.Stop();
+                //RunningSound.Play();
+                //WalkingSound.Stop();
             }
             else
             {
-                RunningSound.Stop();
-                WalkingSound.Play();
+                //RunningSound.Stop();
+                //WalkingSound.Play();
                 NavMesh.speed = m_WalkSpeed;
             }
 
@@ -88,8 +88,8 @@ public class EnemyControl : MonoBehaviour
                     m_CloseToPlayer = true;
                     Vector3 lookAt = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
                     transform.LookAt(lookAt);
-                    WalkingSound.Stop();
-                    RunningSound.Stop();
+                    //WalkingSound.Stop();
+                    //RunningSound.Stop();
 
                 }
                 else

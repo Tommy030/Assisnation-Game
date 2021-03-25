@@ -9850,7 +9850,6 @@ MonoBehaviour:
   cb: 2
   m_WeaponPoint: {fileID: 0}
   m_weaponData: {fileID: 11400000, guid: 7aa578e72e42db048ae2072fea6e624e, type: 2}
-  FirePoint: {fileID: 7674959556444520757}
   m_automatic: 1
   muzzleflashOn: 1
   m_muzzleFlash: {fileID: 745655567473613382}
@@ -9872,7 +9871,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b0bd34b55260b0a429fb9849b8452489, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.01
   m_Pitch: 1
   Loop: 0
