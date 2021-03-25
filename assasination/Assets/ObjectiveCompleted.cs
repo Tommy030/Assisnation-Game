@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class ObjectiveCompleted : MonoBehaviour
 {
     public static ObjectiveCompleted Instance;
+    public TMP_Text Objective;
+
     private void Awake()
     {
         Instance = this;
@@ -29,6 +33,11 @@ public class ObjectiveCompleted : MonoBehaviour
             Score.Instance.CheckHighScore();
             Debug.Log("ping");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + SceneToJumpTo);
+        }
+
+        if (ObjComp == true)
+        {
+            Objective.text = "Target has been eliminated\nGet to the van for extraction";
         }
     }
 }

@@ -13,11 +13,11 @@ public class TargetManager : MonoBehaviour
         switch (random)
         {
             case 0: Targets[random].SetActive(true);
-                Tip.text = "assassinate the target, he hasn't been spotted al day find him"; break;
+                Tip.text = "Assassinate the target, he hasn't been spotted all day. Find him"; break;
             case 1: Targets[random].SetActive(true);
-                Tip.text = "assassinate the target, hasn't left his home"; break;
+                Tip.text = "Assassinate the target, he hasn't left his home"; break;
             case 2: Targets[random].SetActive(true);
-                Tip.text = "assassinate the target, he has been moving between te buildings al day"; break;
+                Tip.text = "Assassinate the target, he's been moving between the buildings all day"; break;
             default:
                 break;
         }
