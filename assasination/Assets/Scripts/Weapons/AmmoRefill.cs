@@ -4,24 +4,18 @@ using UnityEngine;
 
 public class AmmoRefill : MonoBehaviour
 {
-    private Gun m_ammoAmount;
-    private int m_ammoRefillAmount;
-    void Start()
-    {
-        //m_ammoAmount = GetComponent<Gun>();
-
-        //m_ammoRefillAmount = m_ammoAmount.AmmoReserve;
-    }
-
-
+    private int abc;
 
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Weapon"))
         {
             Debug.Log("Refill");
-            //m_ammoAmount.AmmoRefill(m_ammoRefillAmount);
+            Gun gunSript = other.GetComponent<Gun>();
+            abc = gunSript.m_weaponData.m_ammoAmount;
+            gunSript.AmmoRefill(abc);
+            
         }
     }
 }

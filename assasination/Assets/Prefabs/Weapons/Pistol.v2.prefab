@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 42978809342626140}
   - component: {fileID: 42978809339196140}
   - component: {fileID: 42978809340313458}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PM-40_Receiver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 42978809342608424}
   - component: {fileID: 42978809339284274}
   - component: {fileID: 42978809340684626}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PM-40_Magazine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 42978809342652574}
   - component: {fileID: 42978809339192648}
   - component: {fileID: 42978809340660960}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PM-40_Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -257,9 +257,10 @@ GameObject:
   - component: {fileID: 42978809342534965}
   - component: {fileID: 42978809342534966}
   - component: {fileID: 6627254228925936509}
-  m_Layer: 0
+  - component: {fileID: -4938197129329133738}
+  m_Layer: 12
   m_Name: Pistol.v2
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -354,11 +355,14 @@ MonoBehaviour:
   m_muzzleFlash: {fileID: 4752279534923650923}
   m_audioOn: 0
   duration: 0.5
+  m_reloading: 0
+  AmmoReserve: 0
   SoundRange: 10
   m_EnemyLayer:
     serializedVersion: 2
     m_Bits: 0
   upRecoil: {x: 15, y: 0, z: 0}
+  IsSelected: 0
 --- !u!82 &42978809342534966
 AudioSource:
   m_ObjectHideFlags: 0
@@ -474,6 +478,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &-4938197129329133738
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42978809342534964}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 30.59113, y: 170.71414, z: 110.85553}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &42978809342537428
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,7 +502,7 @@ GameObject:
   - component: {fileID: 42978809342591526}
   - component: {fileID: 42978809339251160}
   - component: {fileID: 42978809340350506}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PM-40_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -566,7 +583,7 @@ GameObject:
   - component: {fileID: 4845226175192822153}
   - component: {fileID: 4751997824022681549}
   - component: {fileID: 4753278301888821089}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: FlashHeadon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5440,7 +5457,7 @@ GameObject:
   - component: {fileID: 4844887313501070885}
   - component: {fileID: 4752279534923650923}
   - component: {fileID: 4753348827536487929}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: MuzzleFlash01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10313,7 +10330,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6117112160542153423}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10343,7 +10360,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2365614043216665788}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: GameObject (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

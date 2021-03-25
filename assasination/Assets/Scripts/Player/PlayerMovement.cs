@@ -94,13 +94,13 @@ public class PlayerMovement : MonoBehaviour
         {
             RunSound.Stop();
             WalkSound.Play();
-            Debug.Log("Ping;");
+            //Debug.Log("Ping;");
         }
         else if(Input.GetButtonUp("Horizontal") || Input.GetButtonUp("Vertical"))
         {
             RunSound.Stop();
             WalkSound.Stop();
-            Debug.Log("Ping2");
+           //Debug.Log("Ping2");
 
         }
 
@@ -109,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && m_IsGrounded)
         {
             m_Velocity.y = Mathf.Sqrt(m_JumpHeight * -2f * m_Gravity);
-            Debug.Log("ping");
+            //Debug.Log("ping");
         }
 
 
@@ -130,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
                 vertical = 0;
                 horizontal = 0;
                 m_Velocity.y = 0;
-                Debug.Log("should stop climbing");
+                //Debug.Log("should stop climbing");
             }
             else
             {
@@ -151,7 +151,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && m_IsGrounded)
         {
             m_Velocity.y = Mathf.Sqrt(m_JumpHeight * -2f * m_Gravity);
-            Debug.Log("ping");
+            //Debug.Log("ping");
         }
 
         if (!m_IsGrounded)

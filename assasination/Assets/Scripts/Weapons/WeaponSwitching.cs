@@ -85,7 +85,7 @@ public class WeaponSwitching : MonoBehaviour
     {
         SelectedWeapons[SelectedWeapons.Count - 1].SetActive(false);
         GameObject obj = Instantiate(Sniper);
-        obj.GetComponent<Scope>().sniperScope = Scope;
+        //obj.GetComponent<Scope>().sniperScope = Scope;
         Time.timeScale = 1;
         SelectedWeapons.Add(obj);
     }
