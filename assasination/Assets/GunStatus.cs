@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GunStatus : MonoBehaviour
 {
-    [SerializeField] private GameObject Gun;
+    [SerializeField] private GameObject[] Gun;
     void Start()
     {
         
@@ -18,12 +18,20 @@ public class GunStatus : MonoBehaviour
 
     public void DisableGun()
     {
-        Gun.GetComponent<MeshRenderer>().enabled = false;
-        Gun.GetComponent<Gun>().IsSelected = false;
+        for (int i = 0; i < Gun.Length; i++)
+        {
+            Gun[i].GetComponent<MeshRenderer>().enabled = false;
+            
+        }
+        Gun[0].GetComponent<Gun>().IsSelected = false;
     }
     public void EnableGun()
     {
-        Gun.GetComponent<MeshRenderer>().enabled = true;
-        Gun.GetComponent<Gun>().IsSelected = true;
+        for (int i = 0; i < Gun.Length; i++)
+        {
+            Gun[i].GetComponent<MeshRenderer>().enabled = true;
+            
+        }
+        Gun[0].GetComponent<Gun>().IsSelected = true;
     }
 }

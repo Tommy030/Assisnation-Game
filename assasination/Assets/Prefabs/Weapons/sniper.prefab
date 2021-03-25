@@ -58,7 +58,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01885bb207e639c41a68d4c7a1793794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Gun: {fileID: 5253995995202298248}
+  Gun:
+  - {fileID: 5253995995202298248}
 --- !u!1 &5253995995202298248
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,6 +166,7 @@ MonoBehaviour:
   m_audioOn: 1
   duration: 2
   m_reloading: 0
+  AmmoReserve: 0
   SoundRange: 40
   m_EnemyLayer:
     serializedVersion: 2
