@@ -269,7 +269,6 @@ MonoBehaviour:
   m_weaponData: {fileID: 11400000, guid: 03c4706c1fa9d85498e967c2d136c1c1, type: 2}
   FirePoint: {fileID: 8433577218564412717}
   m_automatic: 0
-  m_reloadTime: 0
   muzzleflashOn: 1
   m_muzzleFlash: {fileID: 8632381648084527545}
   m_audioOn: 1
@@ -277,7 +276,8 @@ MonoBehaviour:
   SoundRange: 10
   m_EnemyLayer:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 0
+  upRecoil: {x: 10, y: 0, z: 0}
 --- !u!82 &3938306263631092708
 AudioSource:
   m_ObjectHideFlags: 0
@@ -288,9 +288,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b0bd34b55260b0a429fb9849b8452489, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ce9c574b2cee70146ad78e815540b2f1, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.01
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 0
   Mute: 0
