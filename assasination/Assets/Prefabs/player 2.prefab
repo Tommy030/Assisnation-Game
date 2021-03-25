@@ -183,6 +183,7 @@ MonoBehaviour:
   m_BaseSoundRange: 0
   m_MaxHealth: 75
   m_CurrentHealth: 0
+  m_HealthRegen: 1
   m_HealthBar: {fileID: 0}
   WalkSound: {fileID: 0}
   RunSound: {fileID: 0}
@@ -208,7 +209,6 @@ MonoBehaviour:
   S_Sniper: {fileID: 6526037038087239513, guid: 76ad46b4214e16e49852298b5b894aae,
     type: 3}
   SelectedWeapons: []
-  Scope: {fileID: 0}
 --- !u!82 &6328728427124464455
 AudioSource:
   m_ObjectHideFlags: 0

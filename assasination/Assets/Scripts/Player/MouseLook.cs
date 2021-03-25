@@ -40,6 +40,10 @@ public class MouseLook : MonoBehaviour
         }
 
         m_MouseSensVal.text = m_MouseSensitivity.ToString("F0");
+        if (Time.timeScale == 1)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
         float mouseX = Input.GetAxis("Mouse X") * m_MouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * m_MouseSensitivity * Time.deltaTime;
 

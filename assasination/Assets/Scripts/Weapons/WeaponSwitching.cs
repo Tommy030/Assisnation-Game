@@ -16,7 +16,6 @@ public class WeaponSwitching : MonoBehaviour
 
 
     [SerializeField] private List<GameObject> SelectedWeapons = new List<GameObject>();
-    [SerializeField] private GameObject Scope;
     void Start()
     {
         
