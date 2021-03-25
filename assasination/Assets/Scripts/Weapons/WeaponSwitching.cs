@@ -19,7 +19,7 @@ public class WeaponSwitching : MonoBehaviour
     [SerializeField] private GameObject Scope;
     void Start()
     {
-        Pistol.SetActive(false);
+        
         Knife.SetActive(false);
         GameObject obj = Instantiate(Knife);
         SelectedWeapons.Add(obj);

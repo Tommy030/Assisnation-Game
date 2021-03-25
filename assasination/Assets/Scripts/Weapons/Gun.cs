@@ -37,7 +37,7 @@ public class Gun : MonoBehaviour
     private int m_clipsize;
     private int CurrentAmmo;
     public bool m_reloading = false;
-    private int AmmoReserve;
+    public int AmmoReserve;
 
     [SerializeField] private float SoundRange = 10f;
     [SerializeField] private LayerMask m_EnemyLayer;
@@ -266,5 +266,10 @@ public class Gun : MonoBehaviour
     private void StopRecoil()
     {
         transform.localEulerAngles = originalRot;
+    }
+    public void AmmoRefill(int ammorefill)
+    {
+        int abc = ammorefill;
+        AmmoReserve = abc;
     }
 }
