@@ -35,9 +35,9 @@ public class Gun : MonoBehaviour
 
     private bool m_useAmmo = true;
     private int m_clipsize;
-    private int m_ammo;
+    private int CurrentAmmo;
     public bool m_reloading = false;
-    private int ammo;
+    private int AmmoReserve;
 
     [SerializeField] private float SoundRange = 10f;
     [SerializeField] private LayerMask m_EnemyLayer;
@@ -53,11 +53,12 @@ public class Gun : MonoBehaviour
     
     private int abc;
 
+    public bool IsSelected;
     private void Start()
     {
         originalRot = transform.localEulerAngles;
 
-        ammo = m_weaponData.m_ammoAmount;
+        AmmoReserve = m_weaponData.m_ammoAmount;
         m_audio = GetComponent<AudioSource>();
         m_WeaponPoint = GameObject.Find("weaponpoint");
         FirePoint = GameObject.Find("Main Camera");
@@ -68,6 +69,7 @@ public class Gun : MonoBehaviour
             case CurrentWeapon.Knife:
                 {
                     m_useAmmo = false;
+                    IsSelected = true;
                     break;
                 }
             case CurrentWeapon.Pistol:
@@ -96,74 +98,79 @@ public class Gun : MonoBehaviour
                 }
         }
        
-        m_ammo = m_clipsize;
+        CurrentAmmo = m_clipsize;
     }
     void Update()
     {
-        if (Time.timeScale == 1)
+        if (IsSelected == true)
         {
-            AmmoText = GameObject.Find("Ammotext").GetComponent<TMP_Text>();
-            AmmoText.text = m_ammo + "/" + ammo;
-        }
-        gameObject.transform.position = m_WeaponPoint.transform.position;
-        //gameObject.transform.rotation = m_WeaponPoint.transform.rotation;
-        if(m_reloading == false)
-        {
-            if (m_automatic == false)
+
+
+
+            if (Time.timeScale == 1)
             {
-                if (Input.GetMouseButtonDown(0) && Time.time > nextFire && m_ammo > 0)
+                AmmoText = GameObject.Find("Ammotext").GetComponent<TMP_Text>();
+                AmmoText.text = CurrentAmmo + "/" + AmmoReserve;
+            }
+            gameObject.transform.position = m_WeaponPoint.transform.position;
+            //gameObject.transform.rotation = m_WeaponPoint.transform.rotation;
+            if (m_reloading == false)
+            {
+                if (m_automatic == false)
+                {
+                    if (Input.GetMouseButtonDown(0) && Time.time > nextFire && CurrentAmmo > 0)
+                    {
+                        nextFire = Time.time + m_weaponData.m_fireRate;
+                        Shoot();
+                        AddRecoil();
+                    }
+                }
+                else if (Input.GetMouseButton(0) && Time.time > nextFire && CurrentAmmo > 0)
                 {
                     nextFire = Time.time + m_weaponData.m_fireRate;
                     Shoot();
                     AddRecoil();
                 }
-            }
-            else if(Input.GetMouseButton(0) && Time.time > nextFire && m_ammo > 0)
-            {
-                nextFire = Time.time + m_weaponData.m_fireRate;
-                Shoot();
-                AddRecoil();
-            }
-            if(m_useAmmo == true)
-            {
-                if (Input.GetKey(KeyCode.R) || m_ammo <= 0 && ammo != 0)
+                if (m_useAmmo == true)
                 {
-                    m_reloading = true;
-                    StartCoroutine(Reload());
-                    
+                    if (Input.GetKey(KeyCode.R) || CurrentAmmo <= 0 && AmmoReserve != 0)
+                    {
+                        m_reloading = true;
+                        StartCoroutine(Reload());
+
+                    }
+                }
+
+
+                if (cb == CurrentWeapon.Knife)
+                {
+                    if (Input.GetMouseButton(0) && Time.time > nextFire)
+                    {
+                        nextFire = Time.time + m_weaponData.m_fireRate;
+                        Shoot();
+                        AddRecoil();
+                    }
+                }
+
+            }
+
+            Collider[] enemiesInRange = Physics.OverlapSphere(transform.position, SoundRange, m_EnemyLayer);
+
+            if (enemiesInRange.Length != 0)
+            {
+                for (int i = 0; i < enemiesInRange.Length; i++)
+                {
+                    enemiesInRange[i].GetComponent<enemyState>().hunting = true;
                 }
             }
-
-
-            if(cb == CurrentWeapon.Knife)
-            {
-                if (Input.GetMouseButton(0) && Time.time > nextFire) 
-                {
-                    nextFire = Time.time + m_weaponData.m_fireRate;
-                    Shoot();
-                    AddRecoil();
-                }
-            }
-            
         }
-
-        Collider[] enemiesInRange = Physics.OverlapSphere(transform.position, SoundRange, m_EnemyLayer);
-
-        if (enemiesInRange.Length != 0)
-        {
-            for (int i = 0; i < enemiesInRange.Length; i++)
-            {
-                enemiesInRange[i].GetComponent<enemyState>().hunting = true;
-            }
-        }
-
         
     }
     private void Shoot()
     {
         if (m_useAmmo)
         {
-            m_ammo--;
+            CurrentAmmo--;
         }
         
         if(muzzleflashOn == true)
@@ -207,22 +214,22 @@ public class Gun : MonoBehaviour
 
     public void Reloading()
     {
-        if (ammo >= 0)
+        if (AmmoReserve >= 0)
         {
-            int AmountNeeded = m_clipsize - m_ammo;
-            if (ammo >= AmountNeeded)
+            int AmountNeeded = m_clipsize - CurrentAmmo;
+            if (AmmoReserve >= AmountNeeded)
             {
-                ammo -= AmountNeeded;
-                m_ammo = m_clipsize;
+                AmmoReserve -= AmountNeeded;
+                CurrentAmmo = m_clipsize;
             }
-            else if (ammo > 0)
+            else if (AmmoReserve > 0)
             {
-                m_ammo += ammo;
+                CurrentAmmo += AmmoReserve;
             }
         }
 
-        Debug.Log("current ammo " + m_ammo);
-        Debug.Log("current ammo reserve " + ammo);
+        Debug.Log("current ammo " + CurrentAmmo);
+        Debug.Log("current ammo reserve " + AmmoReserve);
         m_reloading = false;
     }
 
@@ -230,22 +237,23 @@ public class Gun : MonoBehaviour
     {
         yield return new WaitForSeconds(m_weaponData.m_reloadTime);
         //12 
-        if (ammo >= 0)
+        if (AmmoReserve >= 0)
         {
-            int AmountNeeded = m_clipsize - m_ammo;
-            if (ammo >= AmountNeeded)
+            int AmountNeeded = m_clipsize - CurrentAmmo;
+            if (AmmoReserve >= AmountNeeded)
             {
-                ammo -= AmountNeeded;
-                m_ammo = m_clipsize;
+                AmmoReserve -= AmountNeeded;
+                CurrentAmmo = m_clipsize;
             }
-            else if( ammo> 0)
+            else if( AmmoReserve> 0)
             {
-                m_ammo += ammo;
+                CurrentAmmo += AmmoReserve;
+                AmmoReserve = 0;
             }
         }
 
-        Debug.Log("current ammo " + m_ammo);
-        Debug.Log("current ammo reserve " + ammo);
+        Debug.Log("current ammo " + CurrentAmmo);
+        Debug.Log("current ammo reserve " + AmmoReserve);
         m_reloading = false;
     }
 

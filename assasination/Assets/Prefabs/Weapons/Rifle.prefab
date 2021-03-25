@@ -10,13 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 2780238077259645086}
   - component: {fileID: 814574687614435504}
+  - component: {fileID: 2090421036022155970}
   m_Layer: 0
   m_Name: Rifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2780238077259645086
 Transform:
   m_ObjectHideFlags: 0
@@ -45,6 +46,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_WeaponPoint: {fileID: 0}
+--- !u!114 &2090421036022155970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3753804376584974570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01885bb207e639c41a68d4c7a1793794, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Gun: {fileID: 1266284445411044809}
 --- !u!1001 &4618464879894871388
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66,6 +80,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5875697405467545768, guid: fdd775d3dc7fffa4f9a654bd5bceef95,
+        type: 3}
+      propertyPath: SoundRange
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5875697405467545768, guid: fdd775d3dc7fffa4f9a654bd5bceef95,
         type: 3}
@@ -129,6 +148,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdd775d3dc7fffa4f9a654bd5bceef95, type: 3}
+--- !u!1 &1266284445411044809 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5875697405467545749, guid: fdd775d3dc7fffa4f9a654bd5bceef95,
+    type: 3}
+  m_PrefabInstance: {fileID: 4618464879894871388}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1934698817222063987 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6539643392339708463, guid: fdd775d3dc7fffa4f9a654bd5bceef95,

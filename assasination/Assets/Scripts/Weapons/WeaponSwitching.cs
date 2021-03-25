@@ -47,14 +47,14 @@ public class WeaponSwitching : MonoBehaviour
         {
             
             SelectedWeapons[0].SetActive(true);
-            SelectedWeapons[SelectedWeapons.Count - 1].SetActive(false);
+            SelectedWeapons[SelectedWeapons.Count - 1].GetComponent<GunStatus>().DisableGun();
         }
         else if (SelectedWeapon == 1)
         {
             SelectedWeapons[0].SetActive(false);
-            SelectedWeapons[SelectedWeapons.Count - 1].SetActive(true);
+            SelectedWeapons[SelectedWeapons.Count - 1].GetComponent<GunStatus>().EnableGun();
         }
-        
+
     }
 
     public void SelectPistol()

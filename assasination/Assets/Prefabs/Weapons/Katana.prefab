@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2833915723916439896}
   - component: {fileID: 6016605200654759296}
+  - component: {fileID: 8768238035505434142}
   m_Layer: 0
   m_Name: Katana
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4851471654380606662}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 99.11072, y: -86.95103, z: -73.08515}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5928472749423234404}
@@ -45,6 +46,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_WeaponPoint: {fileID: 0}
+--- !u!114 &8768238035505434142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4851471654380606662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01885bb207e639c41a68d4c7a1793794, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Gun: {fileID: 5928472749423137092}
 --- !u!1 &5928472749423137092
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,17 +106,18 @@ MonoBehaviour:
   cb: 0
   m_WeaponPoint: {fileID: 0}
   m_weaponData: {fileID: 11400000, guid: 462ee95590ea0674aa988f27561f74de, type: 2}
-  FirePoint: {fileID: 0}
   m_automatic: 0
   muzzleflashOn: 0
   m_muzzleFlash: {fileID: 0}
   m_audioOn: 0
   duration: 0
-  SoundRange: 10
+  m_reloading: 0
+  SoundRange: 1
   m_EnemyLayer:
     serializedVersion: 2
     m_Bits: 0
   upRecoil: {x: 500, y: 0, z: 0}
+  IsSelected: 0
 --- !u!1 &5928472749423137094
 GameObject:
   m_ObjectHideFlags: 0

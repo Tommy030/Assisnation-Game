@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8505263692761457154}
   - component: {fileID: 6413178339226094588}
+  - component: {fileID: 7487314008097990885}
   m_Layer: 0
-  m_Name: Sniper
+  m_Name: sniper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,6 +46,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_WeaponPoint: {fileID: 0}
+--- !u!114 &7487314008097990885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2629741229778957785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01885bb207e639c41a68d4c7a1793794, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Gun: {fileID: 5253995995202298248}
 --- !u!1 &5253995995202298248
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,17 +159,18 @@ MonoBehaviour:
   cb: 3
   m_WeaponPoint: {fileID: 0}
   m_weaponData: {fileID: 11400000, guid: 90cc7560ca46a204f950474f817564c8, type: 2}
-  FirePoint: {fileID: 7412508651551431727}
   m_automatic: 1
   muzzleflashOn: 1
   m_muzzleFlash: {fileID: 7412508650473303024}
   m_audioOn: 1
   duration: 2
-  SoundRange: 10
+  m_reloading: 0
+  SoundRange: 40
   m_EnemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   upRecoil: {x: -10, y: 0, z: 0}
+  IsSelected: 0
 --- !u!114 &5253995995202298262
 MonoBehaviour:
   m_ObjectHideFlags: 0
