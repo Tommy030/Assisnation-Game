@@ -56,9 +56,11 @@ public class PlayerMovement : MonoBehaviour
     [Header("health vars")]
     [SerializeField] private float m_MaxHealth;
     [SerializeField] private float m_CurrentHealth;
+    [SerializeField] private float m_HealthRegen = 1f;
 
     [SerializeField] private Slider m_HealthBar;
 
+    private bool CanRegen;
     [SerializeField] private AudioSource WalkSound;
     [SerializeField] private AudioSource RunSound;
 
@@ -78,6 +80,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (CanRegen == true)
+        {
+            m_CurrentHealth += m_HealthRegen * Time.deltaTime;
+        }
+        m_CurrentHealth = Mathf.Clamp(m_CurrentHealth, 0, m_MaxHealth);
+
         m_StaminaBar.value = m_Stamina;
         m_HealthBar.value = m_CurrentHealth;
         m_IsGrounded = Physics.CheckSphere(m_GroundCheck.position, m_GroundDistance, m_GroundMask);
@@ -268,11 +276,18 @@ public class PlayerMovement : MonoBehaviour
     }
     public void TakeDamage(float _damage)
     {
+        CanRegen = false;
         m_CurrentHealth -= _damage;
 
         if (m_CurrentHealth < 0)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 0);
         }
+        Invoke("Regen", 1f);
+    }
+
+    private void Regen()
+    {
+        CanRegen = true;
     }
 }
